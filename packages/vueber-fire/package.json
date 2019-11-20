@@ -1,0 +1,17 @@
+{
+  "name": "vueber-fire",
+  "version": "0.0.1-alpha.0",
+  "license": "MIT",
+  "description": "Linking Firebase Firestore to Vueber.",
+  "main": "src/index.js",
+  "author": "Pascal Luther",
+  "repository": "https://github.com/lupas/vueber",
+  "homepage": "https://github.com/lupas",
+  "keywords": [
+    "vue, vuejs, chat, vueber, messaging, inbox, firebase, firestore"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {}
+}

@@ -19,7 +19,10 @@
         @showDetailsClicked="showRightSidebar = !showRightSidebar"
       />
 
-      <div class="rightSubContainer" v-if="selectedConversation">
+      <div
+        class="rightSubContainer"
+        v-if="selectedConversation"
+      >
         <div class="chatContainer">
           <messagesView
             :messages="messages"
@@ -34,13 +37,16 @@
           <inputFooter
             v-if="selectedConversation"
             :selected-conversation="selectedConversation"
-            @keyboardClosed="scrollToBottom(300)"
+            @keyboardClosed="scrollTo('bottom')"
             @messagePosted="messagePosted"
             class="inputFooter"
           />
         </div>
 
-        <div v-if="showRightSidebar" class="rightSidebar">
+        <div
+          v-if="showRightSidebar"
+          class="rightSidebar"
+        >
           <rightSidebar
             :chatpartnerAvatarPath="chatpartnerAvatarPath"
             :chatpartner="chatpartner"
@@ -48,7 +54,10 @@
         </div>
       </div>
 
-      <div v-else class="noSelectionView">
+      <div
+        v-else
+        class="noSelectionView"
+      >
         <noSelectionView />
       </div>
     </div>
@@ -127,6 +136,9 @@ export default {
     },
     messagePosted(message) {
       this.$emit('messagePosted', message)
+    },
+    scrollTo(value) {
+      // TODO: To implement
     }
   }
 }

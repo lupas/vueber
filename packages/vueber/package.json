@@ -1,0 +1,17 @@
+{
+  "name": "vueber",
+  "version": "0.0.1-alpha.0",
+  "license": "MIT",
+  "description": "Messenger & Chat framework for Vue.js applications.",
+  "main": "src/index.js",
+  "author": "Pascal Luther",
+  "repository": "https://github.com/lupas/vueber",
+  "homepage": "https://github.com/lupas",
+  "keywords": [
+    "vue, vuejs, chat, vueber, messaging, inbox"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {}
+}

@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "author": "Pascal Luther",
+  "repository": "https://github.com/lupas/c",
+  "homepage": "https://github.com/lupas",
+  "keywords": [
+    "vue, vuejs, chat, vueber, messaging, inbox"
+  ],
+  "scripts": {
+    "docs:dev": "vuepress dev packages/docs",
+    "docs:build": "vuepress build packages/docs",
+    "npm:publish": "cd packages/vueber && npm publish",
+    "npm:publishAlpha": "cd packages/vueber && npm publish --tag alpha"
+  },
+  "devDependencies": {
+    "prettier": "^1.19.1",
+    "vuepress": "^1.2.0"
+  }
+}

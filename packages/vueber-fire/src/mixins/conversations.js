@@ -113,8 +113,7 @@ export default {
         senderName: this.currentUser.username,
         message: payload.message,
         sentDate: this.fireStoreObj.FieldValue.serverTimestamp(),
-        isRead: false,
-        isWelcomeMessage: false
+        isRead: false
       }
 
       const batch = this.fireStore.batch()

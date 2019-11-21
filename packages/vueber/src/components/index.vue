@@ -15,49 +15,40 @@
         v-if="selectedConversation"
         :selected-conversation="selectedConversation"
         :chatpartner="chatpartner"
-        :chatpartnerAvatarPath="chatpartnerAvatarPath"
+        :chatpartner-avatar-path="chatpartnerAvatarPath"
         @showDetailsClicked="showRightSidebar = !showRightSidebar"
       />
 
-      <div
-        class="rightSubContainer"
-        v-if="selectedConversation"
-      >
+      <div v-if="selectedConversation" class="rightSubContainer">
         <div class="chatContainer">
           <messagesView
             :messages="messages"
             :selected-conversation="selectedConversation"
             :has-more-messages="hasMoreMessages"
-            :chatpartnerAvatarPath="chatpartnerAvatarPath"
+            :chatpartner-avatar-path="chatpartnerAvatarPath"
             :current-user="currentUser"
-            @loadMoreMessages="loadMoreMessages"
             class="messagesView"
+            @loadMoreMessages="loadMoreMessages"
           />
 
           <inputFooter
             v-if="selectedConversation"
             :selected-conversation="selectedConversation"
+            class="inputFooter"
             @keyboardClosed="scrollTo('bottom')"
             @messagePosted="messagePosted"
-            class="inputFooter"
           />
         </div>
 
-        <div
-          v-if="showRightSidebar"
-          class="rightSidebar"
-        >
+        <div v-if="showRightSidebar" class="rightSidebar">
           <rightSidebar
-            :chatpartnerAvatarPath="chatpartnerAvatarPath"
+            :chatpartner-avatar-path="chatpartnerAvatarPath"
             :chatpartner="chatpartner"
           />
         </div>
       </div>
 
-      <div
-        v-else
-        class="noSelectionView"
-      >
+      <div v-else class="noSelectionView">
         <noSelectionView />
       </div>
     </div>
@@ -137,7 +128,7 @@ export default {
     messagePosted(message) {
       this.$emit('messagePosted', message)
     },
-    scrollTo(value) {
+    scrollTo() {
       // TODO: To implement
     }
   }

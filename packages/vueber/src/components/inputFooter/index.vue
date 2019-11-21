@@ -5,16 +5,16 @@
   >
     <v-text-field
       v-model="newMessage"
-      @blur="blurHandler"
-      @focus="focusHandler"
-      @keydown="inputHandler"
-      @click:append="sendMessage()"
       outlined
       hide-details
       rounded
       dense
       background-color="grey lighten-4"
       placeholder="Type a message..."
+      @blur="blurHandler"
+      @focus="focusHandler"
+      @keydown="inputHandler"
+      @click:append="sendMessage()"
     >
       <template v-slot:append>
         <v-menu
@@ -24,19 +24,12 @@
           left
         >
           <template v-slot:activator="{ on }">
-            <v-icon
-              class="grey--text"
-              v-on="on"
-              text
-              icon
-            >mdi-emoticon-outline</v-icon>
+            <v-icon class="grey--text" text icon v-on="on">
+              mdi-emoticon-outline
+            </v-icon>
           </template>
           <clientOnly>
-            <picker
-              @select="addEmoji"
-              title="Emoji's"
-              emoji="kr"
-            />
+            <picker title="Emoji's" emoji="kr" @select="addEmoji" />
           </clientOnly>
         </v-menu>
       </template>
@@ -44,10 +37,12 @@
         <v-icon
           :loading="buttonLoading"
           :disabled="sendButtonDisabled"
-          @click="sendMessage()"
           text
           class="primary--text ml-2 pl-0 mr-3"
-        >mdi-send</v-icon>
+          @click="sendMessage()"
+        >
+          mdi-send
+        </v-icon>
       </template>
     </v-text-field>
   </div>

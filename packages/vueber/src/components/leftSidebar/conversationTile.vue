@@ -4,7 +4,7 @@
     @click="handeClick(conversation)"
   >
     <v-list-item-avatar>
-      <v-img :src="avatarPath" alt="User Avatar"></v-img>
+      <v-img :src="avatarPath" alt="User Avatar" />
     </v-list-item-avatar>
 
     <v-list-item-content>
@@ -27,7 +27,9 @@
         right
       >
         <template v-slot:activator="{ on }">
-          <v-icon v-on="on" color="red">mdi-new-box</v-icon>
+          <v-icon color="red" v-on="on">
+            mdi-new-box
+          </v-icon>
         </template>
         <span>New message.</span>
       </v-tooltip>
@@ -39,7 +41,9 @@
         right
       >
         <template v-slot:activator="{ on }">
-          <v-icon v-on="on" color="success" small>mdi-check</v-icon>
+          <v-icon color="success" small v-on="on">
+            mdi-check
+          </v-icon>
         </template>
         <span>Message has been read.</span>
       </v-tooltip>
@@ -51,7 +55,9 @@
         right
       >
         <template v-slot:activator="{ on }">
-          <v-icon v-on="on" color="grey" small>mdi-chart-bubble</v-icon>
+          <v-icon color="grey" small v-on="on">
+            mdi-chart-bubble
+          </v-icon>
         </template>
         <span>Message has not been read.</span>
       </v-tooltip>

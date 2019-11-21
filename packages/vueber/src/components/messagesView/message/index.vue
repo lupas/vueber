@@ -13,17 +13,17 @@
       class="d-flex"
       :class="{ 'flex-row-reverse': isOwnMessage, 'ml-auto': isOwnMessage }"
     >
-      <avatar :avatarPath="avatarPath" />
+      <avatar :avatar-path="avatarPath" />
 
       <div
         class="chatBubble wrapLongWords px-3 py-2 mb-0"
         :class="dynBubbleClass"
       >
         <!-- eslint-disable vue/no-v-html -->
-        <span v-html="urlifiedMessage" class="wrapLongWords"></span>
+        <span class="wrapLongWords" v-html="urlifiedMessage" />
       </div>
 
-      <isReadFlag v-if="isOwnMessage" :isRead="message.isRead" />
+      <isReadFlag v-if="isOwnMessage" :is-read="message.isRead" />
     </v-col>
   </v-row>
 </template>

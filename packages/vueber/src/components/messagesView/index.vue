@@ -2,9 +2,9 @@
   <div ref="messagesView">
     <v-row v-if="selectedConversation" class="fill-height">
       <v-col v-if="hasMoreMessages" cols="12" class="text-center mb-4">
-        <v-btn @click="loadMoreMessages" text class="grey--text" small
-          >Load older messages</v-btn
-        >
+        <v-btn text class="grey--text" small @click="loadMoreMessages">
+          Load older messages
+        </v-btn>
       </v-col>
 
       <v-col class="iphonexVerticalPadding">
@@ -13,8 +13,8 @@
             :message="item"
             :selected-conversation="selectedConversation"
             :current-user="currentUser"
-            :chatpartnerAvatarPath="chatpartnerAvatarPath"
-          ></message>
+            :chatpartner-avatar-path="chatpartnerAvatarPath"
+          />
         </v-col>
       </v-col>
     </v-row>
@@ -54,17 +54,6 @@ export default {
     listenerLimit: 10,
     loadMoreClicked: false
   }),
-  watch: {
-    messages: {
-      handler: function(oldVal, newVal) {
-        if (this.loadMoreClicked) {
-          this.scrollTo('top')
-          this.loadMoreClicked = false
-        }
-        this.scrollTo('bottom')
-      }
-    }
-  },
   computed: {
     messagesLength() {
       return this.messages.length
@@ -85,9 +74,17 @@ export default {
           }
         ]
       })
-    },
-    messagePosted(message) {
-      this.$emit('messagePosted', message)
+    }
+  },
+  watch: {
+    messages: {
+      handler() {
+        if (this.loadMoreClicked) {
+          this.scrollTo('top')
+          this.loadMoreClicked = false
+        }
+        this.scrollTo('bottom')
+      }
     }
   },
   methods: {

@@ -1,7 +1,7 @@
 <template>
-  <v-btn @click="setSidebarValue(true)" text class="title grey--text"
-    >Select a chatpartner.</v-btn
-  >
+  <v-btn text class="title grey--text" @click="setSidebarValue(true)">
+    Select a chatpartner.
+  </v-btn>
 </template>
 
 <script>

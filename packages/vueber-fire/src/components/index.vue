@@ -10,8 +10,7 @@
     @loadMoreConversations="loadNextConversations"
     @loadMoreMessages="loadMoreMessages"
     @messagePosted="postMessage"
-  >
-  </vueber>
+  />
 </template>
 
 <script>
@@ -19,6 +18,9 @@ import { mapState, mapActions, mapMutations } from 'vuex'
 import { unwrapFirestoreDoc } from 'firewings'
 
 export default {
+  components: {
+    vueber: () => import('vueber')
+  },
   props: {
     listenerLimit: {
       type: Number,
@@ -26,7 +28,7 @@ export default {
     },
     currentUser: {
       type: Object,
-      require: true
+      required: true
     },
     initialConversationId: {
       type: String,
@@ -36,9 +38,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  components: {
-    vueber: () => import('vueber')
   },
   data: () => ({
     messages: [],
@@ -113,7 +112,7 @@ export default {
       }
     },
     async loadMessages() {
-      let ref = getMessagesRef({
+      let ref = this.getMessagesRef({
         conversationId: this.selectedConversation.id,
         listenerLimit: this.listenerLimit
       })

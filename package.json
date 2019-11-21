@@ -16,6 +16,12 @@
     "npm:publishAlpha": "cd packages/vueber && npm publish --tag alpha"
   },
   "devDependencies": {
+    "@vue/eslint-config-prettier": "^5.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-vue": "^6.0.1",
     "prettier": "^1.19.1",
     "vuepress": "^1.2.0"
   }

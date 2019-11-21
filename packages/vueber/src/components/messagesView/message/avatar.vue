@@ -6,7 +6,7 @@
       :src="avatarPath"
       aspect-ratio="1"
       alt="User Avatar"
-    ></v-img>
+    />
   </v-avatar>
 </template>
 

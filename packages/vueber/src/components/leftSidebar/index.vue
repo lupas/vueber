@@ -6,15 +6,15 @@
           :conversation="conversation"
           :current-conversation="currentConversation"
           @clicked="changeConversation"
-        ></conversationTile>
+        />
       </div>
 
       <v-list-item v-if="hasMoreConversations">
         <v-row align="center" justify="center" class="text-center">
           <v-col cols="12" class="text-center">
-            <v-btn @click="loadNextConversations" text class="grey--text" small
-              >Load more...</v-btn
-            >
+            <v-btn text class="grey--text" small @click="loadNextConversations">
+              Load more...
+            </v-btn>
           </v-col>
         </v-row>
       </v-list-item>

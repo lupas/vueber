@@ -35,9 +35,38 @@ export default {
       type: String,
       default: null
     },
-    conversationsRef: {
+    collection: {
+      type: String,
+      default: 'conversations'
+    },
+    firestoreInstance: {
       type: Object,
-      required: true
+      default: null
+    },
+    firestoreObject: {
+      type: Object,
+      default: null
+    },
+    nuxtFire: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    fireStore() {
+      if (this.nuxtFire) {
+        return this.$fireStore
+      }
+      return this.firestoreInstance
+    },
+    fireStoreObj() {
+      if (this.nuxtFire) {
+        return this.$fireStoreObj
+      }
+      return this.firestoreObject
+    },
+    baseRef() {
+      return this.fireStore.collection(this.collection)
     }
   },
   async mounted() {

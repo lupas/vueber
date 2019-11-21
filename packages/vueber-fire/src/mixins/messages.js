@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     getMessagesRef() {
-      return this.conversationsRef
+      return this.baseRef
         .doc(this.selectedConversation.id)
         .collection('messages')
         .orderBy('sentDate', 'desc')

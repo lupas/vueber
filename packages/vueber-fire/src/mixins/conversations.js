@@ -23,8 +23,7 @@ export default {
       }
       const userId = this.currentUser.id
       /* Careful: Starting a listener that needs to be stopped */
-      this.conversations.listener = this.$fireStore
-        .collection('conversations')
+      this.conversations.listener = this.baseRef
         .where(`participantsArray`, 'array-contains', userId)
         .orderBy('lastMessage.sentDate', 'desc')
         .limit(1)
@@ -74,8 +73,7 @@ export default {
     async loadNextConversations() {
       const userId = this.currentUser.id
 
-      let ref = this.$fireStore
-        .collection('conversations')
+      let ref = this.baseRef
         .where(`participantsArray`, 'array-contains', userId)
         .orderBy('lastMessage.sentDate', 'desc')
         .limit(5)
@@ -114,15 +112,13 @@ export default {
         senderId: this.currentUser.id,
         senderName: this.currentUser.username,
         message: payload.message,
-        sentDate: this.$fireStoreObj.FieldValue.serverTimestamp(),
+        sentDate: this.fireStoreObj.FieldValue.serverTimestamp(),
         isRead: false,
         isWelcomeMessage: false
       }
 
-      const batch = this.$fireStore.batch()
-      const conversationRef = this.$fireStore
-        .collection('conversations')
-        .doc(payload.conversationId)
+      const batch = this.fireStore.batch()
+      const conversationRef = this.baseRef.doc(payload.conversationId)
       const messageRef = conversationRef.collection('messages').doc()
 
       batch.set(messageRef, newMessage)

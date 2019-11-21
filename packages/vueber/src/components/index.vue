@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="mainContainer fullHeight"
-    :class="{ onlyConversationsShown: onlyConversationsShown }"
-  >
+  <div class="mainContainer fullHeight" :class="responsiveClass">
     <div class="leftSidebar">
       <leftSidebar
         :conversations="conversations"
@@ -16,11 +13,12 @@
     <div class="centralContainer fullHeight">
       <headerBar
         v-if="selectedConversation"
+        class="headerBar"
         :selected-conversation="selectedConversation"
         :chatpartner="chatpartner"
         :chatpartner-avatar-path="chatpartnerAvatarPath"
-        @showDetailsClicked="showRightSidebar = !showRightSidebar"
-        @showConversationsClicked="showOnlyConversations"
+        @showDetailsClicked="toggleDetails"
+        @showConversationsClicked="toggleConversations"
       />
 
       <div v-if="selectedConversation" class="rightSubContainer">
@@ -44,10 +42,11 @@
           />
         </div>
 
-        <div v-if="showOnlyConversations" class="rightSidebar">
+        <div v-if="showRightSidebar" class="rightSidebar">
           <rightSidebar
             :chatpartner-avatar-path="chatpartnerAvatarPath"
             :chatpartner="chatpartner"
+            @backButtonPressed="toggleDetails"
           />
         </div>
       </div>
@@ -100,6 +99,12 @@ export default {
     onlyConversationsShown: false
   }),
   computed: {
+    responsiveClass() {
+      return {
+        onlyConversationsShown: this.onlyConversationsShown,
+        onlyDetailsShown: this.showRightSidebar
+      }
+    },
     chatpartner() {
       if (this.selectedConversation) {
         return this.selectedConversation._chatpartner
@@ -141,9 +146,12 @@ export default {
     scrollTo() {
       // TODO: To implement
     },
-    showOnlyConversations() {
-      this.onlyConversationsShown = true
+    toggleConversations() {
+      this.onlyConversationsShown = true // effect only in mobile
       this.$emit('conversationSelected', null)
+    },
+    toggleDetails() {
+      this.showRightSidebar = !this.showRightSidebar
     }
   }
 }
@@ -217,20 +225,37 @@ export default {
 
 /* On devices smaller than 930 px width */
 @media only screen and (max-width: 930px) {
-  .leftSidebar,
-  .rightSidebar {
+  .leftSidebar {
     display: none;
   }
   .centralContainer {
     width: 100%;
   }
 
+  /* If onlyConversationsShown on mobile */
   .onlyConversationsShown > .centralContainer {
     display: none;
   }
 
   .onlyConversationsShown > .leftSidebar {
     display: inherit;
+    width: 100%;
+  }
+
+  /* If onlyDetailsShown on mobile */
+  .onlyDetailsShown > .centralContainer > .rightSubContainer > .chatContainer,
+  .onlyDetailsShown > .centralContainer > .headerBar {
+    display: none;
+  }
+
+  .onlyDetailsShown > .rightSidebar {
+    display: inherit;
+    width: 100%;
+  }
+
+  .rightSidebar {
+    overflow-y: scroll;
+    height: 100%;
     width: 100%;
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="mainContainer">
+    <mobileHeader @backButtonPressed="handleBackButtonPress" />
     <div class="mainUserData">
       <v-avatar size="120px">
         <v-img :src="chatpartnerAvatarPath" alt="User Avatar" />
@@ -28,6 +29,9 @@
 
 <script>
 export default {
+  components: {
+    mobileHeader: () => import('./mobileHeader.vue')
+  },
   props: {
     chatpartner: {
       type: Object,
@@ -36,6 +40,11 @@ export default {
     chatpartnerAvatarPath: {
       type: String,
       required: true
+    }
+  },
+  methods: {
+    handleBackButtonPress() {
+      this.$emit('backButtonPressed')
     }
   }
 }

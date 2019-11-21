@@ -19,7 +19,7 @@
     <div class="spacer"></div>
 
     <div>
-      <v-btn icon @click="handleShowDetails">
+      <v-btn icon @click="showDetails">
         <v-icon>mdi-information-outline</v-icon>
       </v-btn>
     </div>
@@ -53,7 +53,7 @@ export default {
     showConversations() {
       this.$emit('showConversationsClicked')
     },
-    handleShowDetails() {
+    showDetails() {
       this.$emit('showDetailsClicked')
     }
   }

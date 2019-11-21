@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fullWidth">
     <div v-for="conversation in conversations" :key="conversation.id">
       <conversationTile
         :conversation="conversation"
@@ -53,5 +53,9 @@ export default {
   display: flex;
   justify-content: center;
   text-align: center;
+}
+
+.fullWidth {
+  width: 100%;
 }
 </style>

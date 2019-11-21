@@ -1,13 +1,22 @@
 <template>
   <div class="toolbar iPhonexTopPadding">
     <div>
+      <v-btn
+        class="showConverdsationsButton"
+        small
+        icon
+        text
+        @click="showConversations"
+      >
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
       <v-avatar size="40px">
         <v-img :src="chatpartnerAvatarPath" alt="User Avatar" />
       </v-avatar>
       <span class="username">{{ chatpartner.username }}</span>
     </div>
 
-    <div class="spacer" />
+    <div class="spacer"></div>
 
     <div>
       <v-btn icon @click="handleShowDetails">
@@ -41,6 +50,9 @@ export default {
     }
   },
   methods: {
+    showConversations() {
+      this.$emit('showConversationsClicked')
+    },
     handleShowDetails() {
       this.$emit('showDetailsClicked')
     }
@@ -65,5 +77,16 @@ export default {
   font-size: 17px;
   font-weight: bold;
   margin-left: 6px;
+}
+
+.showConverdsationsButton {
+  display: none;
+}
+
+/* On devices smaller than 930 px width */
+@media only screen and (max-width: 930px) {
+  .showConverdsationsButton {
+    display: initial;
+  }
 }
 </style>

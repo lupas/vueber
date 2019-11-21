@@ -1,5 +1,8 @@
 <template>
-  <div class="mainContainer fullHeight">
+  <div
+    class="mainContainer fullHeight"
+    :class="{ onlyConversationsShown: onlyConversationsShown }"
+  >
     <div class="leftSidebar">
       <leftSidebar
         :conversations="conversations"
@@ -10,13 +13,14 @@
       />
     </div>
 
-    <div class="rightContainer fullHeight">
+    <div class="centralContainer fullHeight">
       <headerBar
         v-if="selectedConversation"
         :selected-conversation="selectedConversation"
         :chatpartner="chatpartner"
         :chatpartner-avatar-path="chatpartnerAvatarPath"
         @showDetailsClicked="showRightSidebar = !showRightSidebar"
+        @showConversationsClicked="showOnlyConversations"
       />
 
       <div v-if="selectedConversation" class="rightSubContainer">
@@ -40,7 +44,7 @@
           />
         </div>
 
-        <div v-if="showRightSidebar" class="rightSidebar">
+        <div v-if="showOnlyConversations" class="rightSidebar">
           <rightSidebar
             :chatpartner-avatar-path="chatpartnerAvatarPath"
             :chatpartner="chatpartner"
@@ -49,7 +53,7 @@
       </div>
 
       <div v-else class="noSelectionView">
-        <noSelectionView />
+        <noSelectionView @clicked="showOnlyConversations" />
       </div>
     </div>
   </div>
@@ -92,7 +96,8 @@ export default {
     }
   },
   data: () => ({
-    showRightSidebar: false
+    showRightSidebar: false,
+    onlyConversationsShown: false
   }),
   computed: {
     chatpartner() {
@@ -121,6 +126,7 @@ export default {
   },
   methods: {
     handleChangedConversation(conversation) {
+      this.onlyConversationsShown = false
       this.$emit('conversationSelected', conversation)
     },
     loadMoreConversations() {
@@ -134,6 +140,10 @@ export default {
     },
     scrollTo() {
       // TODO: To implement
+    },
+    showOnlyConversations() {
+      this.onlyConversationsShown = true
+      this.$emit('conversationSelected', null)
     }
   }
 }
@@ -194,7 +204,7 @@ export default {
   border-right: solid #d3d3d380 1px;
 }
 
-.rightContainer {
+.centralContainer {
   width: calc(100% - 350px);
   display: flex;
   flex-direction: column;
@@ -210,6 +220,18 @@ export default {
   .leftSidebar,
   .rightSidebar {
     display: none;
+  }
+  .centralContainer {
+    width: 100%;
+  }
+
+  .onlyConversationsShown > .centralContainer {
+    display: none;
+  }
+
+  .onlyConversationsShown > .leftSidebar {
+    display: inherit;
+    width: 100%;
   }
 }
 </style>

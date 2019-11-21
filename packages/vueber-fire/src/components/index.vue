@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 import { unwrapFirestoreDoc } from 'firewings'
 
 export default {

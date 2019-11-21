@@ -1,6 +1,6 @@
 <template>
   <vueber
-    :current-user="currentChatUser"
+    :current-user="currentUser"
     :conversations="conversations"
     :messages="messages"
     :selected-conversation="selectedConversation"
@@ -25,9 +25,13 @@ export default {
       type: Number,
       default: 10
     },
-    $fireStore: {
+    currentUser: {
       type: Object,
       require: true
+    },
+    initialConversationId: {
+      type: String,
+      default: null
     }
   },
   components: {
@@ -43,18 +47,8 @@ export default {
     ...mapState({
       conversations: (state) => state.fireInbox.conversations.data,
       hasMoreConversations: (state) => state.fireInbox.conversations.hasOlder,
-      selectedConversation: (state) => state.fireInbox.conversations.selected,
-      currentUser: (state) => state.fireUser.currentUser
-    }),
-    ...mapGetters({
-      getUserPicUrl: 'fireUsers/getUserPicUrl'
-    }),
-    currentChatUser() {
-      return {
-        id: this.currentUser.id,
-        avatar: this.getUserPicUrl(this.currentUser, 'one', 'xs')
-      }
-    }
+      selectedConversation: (state) => state.fireInbox.conversations.selected
+    })
   },
   watch: {
     selectedConversation() {
@@ -71,7 +65,7 @@ export default {
     }
   },
   async mounted() {
-    console.log('HIER')
+    // If no coversations are loaded, load first batch
     if (this.conversations.length === 0) {
       try {
         await this.loadNextConversations()
@@ -81,6 +75,16 @@ export default {
       }
     }
     this.startConversationsListener()
+
+    // If initialConversationId is provided, load the conversation.
+    if (this.initialConversationId) {
+      const conversation = this.conversations.find(
+        (x) => x.id === this.initialConversationId
+      )
+      if (conversation) {
+        this.changeConversation(conversation)
+      }
+    }
   },
   methods: {
     ...mapActions({

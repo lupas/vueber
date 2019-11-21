@@ -113,6 +113,10 @@ export default {
       } catch (e) {
         return noAvatarImg
       }
+    },
+    mainContainerWidth() {
+      console.log(this.$refs.mainContainer.clientWidth)
+      return this.$refs.mainContainer.clientWidth
     }
   },
   methods: {
@@ -199,5 +203,13 @@ export default {
 .inputFooter {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+/* On devices smaller than 930 px width */
+@media only screen and (max-width: 930px) {
+  .leftSidebar,
+  .rightSidebar {
+    display: none;
+  }
 }
 </style>

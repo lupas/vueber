@@ -10,7 +10,7 @@
       class="d-flex messageColumn"
       :class="{ 'flex-row-reverse': isOwnMessage, 'ml-auto': isOwnMessage }"
     >
-      <avatar :avatar-path="avatarPath" />
+      <avatar size="40px" :src="avatarPath" alt="Avatar" />
 
       <div
         class="chatBubble wrapLongWords px-3 py-2 mb-0"
@@ -31,7 +31,7 @@ import anchorme from 'anchorme'
 export default {
   components: {
     isReadFlag: () => import('./isReadFlag'),
-    avatar: () => import('./avatar')
+    avatar: () => import('./../../_elements/avatar')
   },
   props: {
     message: {

@@ -16,20 +16,7 @@
         </p>
       </div>
 
-      <div class="userActions">
-        <p>
-          <router-link :to="`/meet/members/${chatpartner.id}`">
-            Go to User Profile
-          </router-link>
-        </p>
-        <p>
-          <router-link
-            :to="`/contact?modus=report&username=${chatpartner.username}`"
-          >
-            Report this User
-          </router-link>
-        </p>
-      </div>
+      <userActions :user-actions="userActions" :chatpartner="chatpartner" />
     </div>
   </div>
 </template>
@@ -37,8 +24,9 @@
 <script>
 export default {
   components: {
-    mobileHeader: () => import('./mobileHeader.vue'),
-    avatar: () => import('../_elements/avatar.vue')
+    mobileHeader: () => import('./mobileHeader'),
+    avatar: () => import('../_elements/avatar'),
+    userActions: () => import('./userActions')
   },
   props: {
     chatpartner: {
@@ -48,6 +36,10 @@ export default {
     chatpartnerAvatarPath: {
       type: String,
       required: true
+    },
+    userActions: {
+      type: Object,
+      default: null
     }
   },
   methods: {
@@ -83,9 +75,5 @@ export default {
   .mobileHeader {
     display: flex;
   }
-}
-
-.userActions {
-  text-align: center;
 }
 </style>

@@ -6,6 +6,7 @@
     :selected-conversation="conversations.selected"
     :has-more-conversations="conversations.hasOlder"
     :has-more-messages="messages.hasMore"
+    :user-actions="userActions"
     @conversationSelected="changeConversation"
     @loadMoreConversations="loadNextConversations"
     @loadMoreMessages="loadMoreMessages"
@@ -50,6 +51,10 @@ export default {
     nuxtFire: {
       type: Boolean,
       default: false
+    },
+    userActions: {
+      type: Object,
+      default: null
     }
   },
   computed: {

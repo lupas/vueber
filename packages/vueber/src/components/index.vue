@@ -46,6 +46,7 @@
           <rightSidebar
             :chatpartner-avatar-path="chatpartnerAvatarPath"
             :chatpartner="chatpartner"
+            :user-actions="userActions"
             @backButtonPressed="toggleDetails"
           />
         </div>
@@ -92,6 +93,10 @@ export default {
     currentUser: {
       type: Object,
       required: true
+    },
+    userActions: {
+      type: Object,
+      default: null
     }
   },
   data: () => ({

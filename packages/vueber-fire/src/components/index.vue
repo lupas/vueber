@@ -17,7 +17,6 @@
 <script>
 import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 import { unwrapFirestoreDoc } from 'firewings'
-import { loadMessages, getMessagesRef } from '@/assets/services/db/vueber-fire'
 
 export default {
   props: {
@@ -32,6 +31,10 @@ export default {
     initialConversationId: {
       type: String,
       default: null
+    },
+    conversationsRef: {
+      type: Object,
+      required: true
     }
   },
   components: {
@@ -96,18 +99,43 @@ export default {
     changeConversation(conversation) {
       this.SELECT_CONVERSATION(conversation)
     },
+    getMessagesRef() {
+      return this.conversationsRef
+        .doc(this.selectedConversation.id)
+        .collection('messages')
+        .orderBy('sentDate', 'desc')
+        .limit(this.listenerLimit)
+    },
     unsubscribeMessagesListener() {
       if (typeof this.messagesListener === 'function') {
         this.messagesListener() // unsubscribes the listener
         this.messagesListener = null
       }
     },
-    async loadMoreMessages() {
-      const { messages, query } = await loadMessages({
+    async loadMessages() {
+      let ref = getMessagesRef({
         conversationId: this.selectedConversation.id,
-        listenerLimit: this.listenerLimit,
-        messagesQueryCursor: this.messagesQueryCursor
+        listenerLimit: this.listenerLimit
       })
+      ref = ref.startAfter(this.messagesQueryCursor)
+
+      try {
+        const query = await ref.get()
+        const messages = []
+        for (const doc of query.docs) {
+          const message = doc.data()
+          message.id = doc.id
+          message.path = doc.ref.path
+          message.sentDate = message.sentDate.toDate()
+          messages.push(message)
+        }
+        return { messages, query }
+      } catch (e) {
+        return Promise.reject(e)
+      }
+    },
+    async loadMoreMessages() {
+      const { messages, query } = await this.loadMessages()
 
       // Disable the load-older-messages button
       this.hasMoreMessages = messages.length >= this.listenerLimit
@@ -118,7 +146,7 @@ export default {
       this.messages = this.messages.concat(messages)
     },
     startMessagesListener() {
-      const ref = getMessagesRef({
+      const ref = this.getMessagesRef({
         conversationId: this.selectedConversation.id,
         listenerLimit: this.listenerLimit
       })

@@ -24,12 +24,19 @@
           left
         >
           <template v-slot:activator="{ on }">
-            <v-icon class="grey--text" v-on="on" text icon
-              >mdi-emoticon-outline</v-icon
-            >
+            <v-icon
+              class="grey--text"
+              v-on="on"
+              text
+              icon
+            >mdi-emoticon-outline</v-icon>
           </template>
           <clientOnly>
-            <picker @select="addEmoji" title="Emoji's" emoji="kr" />
+            <picker
+              @select="addEmoji"
+              title="Emoji's"
+              emoji="kr"
+            />
           </clientOnly>
         </v-menu>
       </template>
@@ -40,8 +47,7 @@
           @click="sendMessage()"
           text
           class="primary--text ml-2 pl-0 mr-3"
-          >mdi-send</v-icon
-        >
+        >mdi-send</v-icon>
       </template>
     </v-text-field>
   </div>
@@ -98,8 +104,6 @@ export default {
         this.$emit('messagePosted', this.newMessage)
       } catch (e) {
         console.error(e)
-        this.$sentry.captureException(e)
-        return this.showSnackbar('error', null, true)
       } finally {
         this.buttonLoading = false
       }

@@ -71,7 +71,6 @@ export default {
         await this.loadNextConversations()
       } catch (e) {
         console.error(e)
-        this.$sentry.captureException(e)
       }
     }
     this.startConversationsListener()

@@ -1,16 +1,13 @@
 <template>
-  <v-row>
-    <v-col cols="12">
+  <div>
+    <div v-if="showDateTime" class="sentDateColumn">
       <div class="text-center">
         <small>{{ message.sentDate | daymonthyeartime_1 }}</small>
       </div>
-    </v-col>
+    </div>
 
-    <v-col
-      cols="12"
-      sm="10"
-      md="7"
-      class="d-flex"
+    <div
+      class="d-flex messageColumn"
       :class="{ 'flex-row-reverse': isOwnMessage, 'ml-auto': isOwnMessage }"
     >
       <avatar :avatar-path="avatarPath" />
@@ -24,8 +21,8 @@
       </div>
 
       <isReadFlag v-if="isOwnMessage" :is-read="message.isRead" />
-    </v-col>
-  </v-row>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -52,6 +49,10 @@ export default {
     chatpartnerAvatarPath: {
       type: String,
       required: true
+    },
+    showDateTime: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -97,5 +98,9 @@ export default {
   word-break: break-word;
   word-wrap: break-word;
   -ms-word-wrap: break-word;
+}
+
+.messageColumn {
+  padding: 20px 0 20px 0;
 }
 </style>

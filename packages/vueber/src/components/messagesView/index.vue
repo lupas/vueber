@@ -7,12 +7,13 @@
     </div>
 
     <message
-      v-for="item in sortedMessages"
+      v-for="(item, index) in sortedMessages"
       :key="item.id"
       :message="item"
       :selected-conversation="selectedConversation"
       :current-user="currentUser"
       :chatpartner-avatar-path="chatpartnerAvatarPath"
+      :show-date-time="shallShowDateTime(index)"
     />
   </div>
 </template>
@@ -87,6 +88,19 @@ export default {
     loadMoreMessages() {
       this.loadMoreClicked = true
       this.$emit('loadMoreMessages')
+    },
+    shallShowDateTime(index) {
+      /* Don't show Date Time if last message is newer than X minutes */
+      if (index === 0) {
+        return true
+      } else {
+        const timeGapInMin = 15 // iof longer no message than X minutes
+        const timeGapMiliSec = timeGapInMin * 60 * 1000 //
+        const timeSinceLastMessage =
+          Date.parse(this.sortedMessages[index].sentDate) -
+          Date.parse(this.sortedMessages[index - 1].sentDate)
+        return timeSinceLastMessage > timeGapMiliSec
+      }
     },
     scrollTo(value) {
       const container = this.$refs.messagesView

@@ -1,24 +1,18 @@
 <template>
   <div>
-    <v-list>
-      <div v-for="conversation in conversations" :key="conversation.id">
-        <conversationTile
-          :conversation="conversation"
-          :current-conversation="currentConversation"
-          @clicked="changeConversation"
-        />
-      </div>
+    <div v-for="conversation in conversations" :key="conversation.id">
+      <conversationTile
+        :conversation="conversation"
+        :current-conversation="currentConversation"
+        @clicked="changeConversation"
+      />
+    </div>
 
-      <v-list-item v-if="hasMoreConversations">
-        <v-row align="center" justify="center" class="text-center">
-          <v-col cols="12" class="text-center">
-            <v-btn text class="grey--text" small @click="loadNextConversations">
-              Load more...
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-list-item>
-    </v-list>
+    <div v-if="hasMoreConversations" class="loadMoreListItem">
+      <v-btn text class=" grey--text" small @click="loadNextConversations">
+        Load more...
+      </v-btn>
+    </div>
   </div>
 </template>
 
@@ -52,4 +46,12 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.loadMoreListItem {
+  min-height: 61px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+</style>

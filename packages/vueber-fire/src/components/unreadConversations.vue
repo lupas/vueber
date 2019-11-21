@@ -10,7 +10,7 @@ export default {
       type: String,
       required: true
     },
-    limit: {
+    listenerLimit: {
       type: Number,
       default: 99
     },

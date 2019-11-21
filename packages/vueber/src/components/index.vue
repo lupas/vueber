@@ -123,10 +123,6 @@ export default {
       } catch (e) {
         return noAvatarImg
       }
-    },
-    mainContainerWidth() {
-      console.log(this.$refs.mainContainer.clientWidth)
-      return this.$refs.mainContainer.clientWidth
     }
   },
   mounted() {

@@ -64,7 +64,7 @@ export default {
         .where(`participantsArray`, 'array-contains', userId)
         .where('lastMessage.isRead', '==', false)
         .orderBy('lastMessage.sentDate', 'desc')
-        .limit(this.limit)
+        .limit(this.listenerLimit)
         .onSnapshot((query) => {
           const unreadConversations = unwrapFirestoreDoc(query)
           const filteredConversations = unreadConversations.filter(

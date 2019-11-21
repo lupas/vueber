@@ -1,23 +1,19 @@
 <template>
-  <div ref="messagesView">
-    <v-row v-if="selectedConversation" class="fill-height">
-      <v-col v-if="hasMoreMessages" cols="12" class="text-center mb-4">
-        <v-btn text class="grey--text" small @click="loadMoreMessages">
-          Load older messages
-        </v-btn>
-      </v-col>
+  <div ref="messagesView" class="messagesView">
+    <div v-if="hasMoreMessages" class="loadMoreMessagesColumn">
+      <v-btn text class="grey--text" small @click="loadMoreMessages">
+        Load older messages
+      </v-btn>
+    </div>
 
-      <v-col class="iphonexVerticalPadding">
-        <v-col v-for="item in sortedMessages" :key="item.id" cols="12">
-          <message
-            :message="item"
-            :selected-conversation="selectedConversation"
-            :current-user="currentUser"
-            :chatpartner-avatar-path="chatpartnerAvatarPath"
-          />
-        </v-col>
-      </v-col>
-    </v-row>
+    <message
+      v-for="item in sortedMessages"
+      :key="item.id"
+      :message="item"
+      :selected-conversation="selectedConversation"
+      :current-user="currentUser"
+      :chatpartner-avatar-path="chatpartnerAvatarPath"
+    />
   </div>
 </template>
 
@@ -105,3 +101,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.messagesView {
+  padding: 20px 20px 20px 20px;
+}
+.loadMoreMessagesColumn {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+</style>

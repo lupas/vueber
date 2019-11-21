@@ -1,8 +1,8 @@
 import VueberFire from './components/main.vue'
-import unreadConversations from './components/unreadConversations.vue'
+import UnreadConversations from './components/unreadConversations.vue'
 
 // Register Components
 
-export { VueberFire, unreadConversations }
+export { VueberFire, UnreadConversations }
 
 export const meta = require('../package.json')

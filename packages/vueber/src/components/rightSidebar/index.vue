@@ -9,18 +9,17 @@
       </p>
     </div>
 
-    <div class="">
-      <p>TODO: Interactive Buttons</p>
+    <div class="ml-3">
       <p>
         <router-link :to="`/meet/members/${chatpartner.id}`">
-          Go To User Profile
+          Go to User Profile
         </router-link>
       </p>
       <p>
         <router-link
           :to="`/contact?modus=report&username=${chatpartner.username}`"
         >
-          Report User
+          Report this User
         </router-link>
       </p>
     </div>

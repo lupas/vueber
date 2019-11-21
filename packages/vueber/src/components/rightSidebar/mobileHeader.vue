@@ -1,13 +1,12 @@
 <template>
-  <div class="toolbar">
-    <v-btn class="showBackButton" small icon text @click="backButtonPressed">
-      <v-icon>mdi-chevron-left</v-icon>
-    </v-btn>
-  </div>
+  <toolbarWrapper flat @goBackPressed="backButtonPressed"> </toolbarWrapper>
 </template>
 
 <script>
 export default {
+  components: {
+    toolbarWrapper: () => import('../_elements/toolbarWrapper')
+  },
   methods: {
     backButtonPressed() {
       this.$emit('backButtonPressed')
@@ -16,16 +15,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.toolbar {
-  height: 57px;
-  padding: 8px 8px 8px 16px;
-}
-
-/* On devices smaller than 930 px width */
-@media only screen and (max-width: 930px) {
-  .showBackButton {
-    display: initial;
-  }
-}
-</style>
+<style scoped></style>

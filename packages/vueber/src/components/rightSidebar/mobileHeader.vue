@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar iPhonexTopPadding">
+  <div class="toolbar">
     <v-btn class="showBackButton" small icon text @click="backButtonPressed">
       <v-icon>mdi-chevron-left</v-icon>
     </v-btn>

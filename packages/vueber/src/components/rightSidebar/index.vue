@@ -1,6 +1,9 @@
 <template>
   <div class="mainContainer">
-    <mobileHeader @backButtonPressed="handleBackButtonPress" />
+    <mobileHeader
+      class="mobileHeader"
+      @backButtonPressed="handleBackButtonPress"
+    />
     <div class="mainUserData">
       <v-avatar size="120px">
         <v-img :src="chatpartnerAvatarPath" alt="User Avatar" />
@@ -65,5 +68,15 @@ export default {
   font-size: 20px;
   font-weight: 700;
   margin-top: 14px;
+}
+
+.mobileHeader {
+  display: none;
+}
+/* On devices smaller than 930 px width */
+@media only screen and (max-width: 930px) {
+  .mobileHeader {
+    display: initial;
+  }
 }
 </style>

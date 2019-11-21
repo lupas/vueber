@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar iPhonexTopPadding">
+  <div class="toolbar">
     <div>
       <v-btn
         class="showConverdsationsButton"

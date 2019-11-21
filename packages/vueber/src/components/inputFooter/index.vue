@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="keyboardClosed ? 'iPhonexBottomPadding' : ''"
-    class="mainContainer"
-  >
+  <div class="mainContainer">
     <v-text-field
       v-model="newMessage"
       outlined
@@ -79,6 +76,7 @@ export default {
   },
   methods: {
     blurHandler() {
+      // TODO: To implement properly
       // On mobile devices, keyboard closes -> does not push messages down again
       if (this.GLOBAL_isMobile) {
         this.$emit('keyboardClosed')

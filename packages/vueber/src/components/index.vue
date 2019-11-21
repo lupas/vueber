@@ -52,7 +52,7 @@
       </div>
 
       <div v-else class="noSelectionView">
-        <noSelectionView @clicked="showOnlyConversations" />
+        <noSelectionView @clicked="toggleConversations" />
       </div>
     </div>
   </div>
@@ -127,6 +127,12 @@ export default {
     mainContainerWidth() {
       console.log(this.$refs.mainContainer.clientWidth)
       return this.$refs.mainContainer.clientWidth
+    }
+  },
+  mounted() {
+    // Makes sure that on mobile, the conversation view comes first
+    if (!this.selectedConversation) {
+      this.onlyConversationsShown = true
     }
   },
   methods: {

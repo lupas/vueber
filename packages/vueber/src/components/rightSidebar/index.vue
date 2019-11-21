@@ -13,7 +13,7 @@
       </p>
     </div>
 
-    <div class="ml-3">
+    <div class="userActions">
       <p>
         <router-link :to="`/meet/members/${chatpartner.id}`">
           Go to User Profile
@@ -78,5 +78,9 @@ export default {
   .mobileHeader {
     display: initial;
   }
+}
+
+.userActions {
+  text-align: center;
 }
 </style>

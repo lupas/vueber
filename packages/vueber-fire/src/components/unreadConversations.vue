@@ -29,7 +29,7 @@ export default {
   },
   data: () => ({
     listener: null,
-    unreadCoversations: []
+    unreadConversations: []
   }),
   computed: {
     fireStore() {
@@ -42,12 +42,12 @@ export default {
       return this.fireStore.collection(this.collection)
     },
     unreadConversationsAmount() {
-      return this.unreadCoversations.length
+      return this.unreadConversations.length
     }
   },
   watch: {
-    unreadConversationsAmount(newVal) {
-      this.$emit('updated', newVal)
+    unreadConversationsAmount() {
+      this.$emit('updated', this.unreadConversations)
     }
   },
   mounted() {
@@ -71,7 +71,7 @@ export default {
             (x) => x.lastMessage.senderId !== userId
           )
 
-          this.unreadCoversations = filteredConversations
+          this.unreadConversations = filteredConversations
         })
     },
 

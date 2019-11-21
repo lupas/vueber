@@ -24,6 +24,10 @@ export default {
     listenerLimit: {
       type: Number,
       default: 10
+    },
+    $fireStore: {
+      type: Object,
+      require: true
     }
   },
   components: {
@@ -67,6 +71,7 @@ export default {
     }
   },
   async mounted() {
+    console.log('HIER')
     if (this.conversations.length === 0) {
       try {
         await this.loadNextConversations()

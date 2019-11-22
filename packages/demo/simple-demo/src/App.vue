@@ -32,16 +32,25 @@ export default {
     userActions: {}
   }),
   methods: {
-    changeConversation() {
-      //
+    changeConversation(conversation) {
+     this.selectedConversation = conversation
+      // Mark conversation as read locally:
+      if (conversation) {
+        const index = this.conversations.findIndex(
+          (el) => el.id === conversation.id
+        )
+        if (!this.conversations[index].lastMessage._ownMessage) {
+          this.conversations[index].lastMessage.isRead = true
+        }
+      }
     },
-    loadMoreConversations() {
+    loadNextConversations() {
       //
     },
     loadMoreMessages() {
       //
     },
-    messagePosted() {
+    postMessage() {
       //
     }
   }

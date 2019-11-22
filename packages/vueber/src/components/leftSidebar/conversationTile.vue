@@ -123,7 +123,7 @@ export default {
 }
 
 .active.listItem {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: var(--selectedColor);
 }
 
 .listItemAvatar {

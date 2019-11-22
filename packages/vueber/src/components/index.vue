@@ -175,6 +175,8 @@ export default {
 .vueber {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
+  /** VARIABLES */
+  --selectedColor: rgba(0, 0, 0, 0.05);
 }
 
 .mainContainer {

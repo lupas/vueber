@@ -2,8 +2,8 @@ module.exports = {
   title: 'vueber',
   description: '...',
   themeConfig: {
-    heroImage: '/logo-no-text.png',
-    logo: '/logo-no-text.png',
+    heroImage: '/logo.svg',
+    logo: '/logo.svg',
     repo: 'lupas/vueber',
     sidebar: [
       '/introduction/',

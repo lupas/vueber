@@ -1,7 +1,7 @@
 ---
 home: true
-heroImage: /logo-no-text.png
-heroText: vueber
+heroImage: /logo.svg
+heroText: Vueber Chat
 tagline: Messenger & Chat framework for Vue.js applications.
 actionText: Get Started →
 actionLink: /introduction/

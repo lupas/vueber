@@ -61,15 +61,4 @@ export default {
   font-weight: bold;
   margin-left: 6px;
 }
-
-.showConversationsButton {
-  display: none;
-}
-
-/* On devices smaller than 930 px width */
-@media only screen and (max-width: 930px) {
-  .showConversationsButton {
-    display: initial;
-  }
-}
 </style>

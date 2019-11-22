@@ -1,9 +1,11 @@
 <template>
   <div class="toolbar" :style="dynStyleToolbar">
     <div class="leftItems">
-      <btn class="backButton" @click="handleGoBack">
-        <v-icon>mdi-chevron-left</v-icon>
-      </btn>
+      <div class="backButton">
+        <btn @click="handleGoBack">
+          <icon :icon="mdiChevronLeft" size="24" />
+        </btn>
+      </div>
       <slot name="left-items" />
     </div>
 
@@ -16,9 +18,12 @@
 </template>
 
 <script>
+import { mdiChevronLeft } from '@mdi/js'
+
 export default {
   components: {
-    btn: () => import('./btn')
+    btn: () => import('./btn'),
+    icon: () => import('./icon')
   },
   props: {
     flat: {
@@ -26,6 +31,9 @@ export default {
       default: false
     }
   },
+  data: () => ({
+    mdiChevronLeft
+  }),
   computed: {
     dynStyleToolbar() {
       return {

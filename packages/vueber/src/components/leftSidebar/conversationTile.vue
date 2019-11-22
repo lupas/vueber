@@ -38,7 +38,7 @@
           conversation.lastMessage._ownMessage &&
             conversation.lastMessage.isRead
         "
-        color="success"
+        color="#4caf50"
         :icon="mdiCheck"
         size="16"
       />
@@ -48,7 +48,6 @@
           conversation.lastMessage._ownMessage &&
             !conversation.lastMessage.isRead
         "
-        color="grey"
         :icon="mdiChartBubble"
         size="16"
       />

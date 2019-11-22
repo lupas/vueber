@@ -21,6 +21,7 @@ export default {
 
 <style scoped>
 button {
+  display: flex;
   cursor: pointer;
   font-size: 18px;
   background-color: transparent;

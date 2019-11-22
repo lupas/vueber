@@ -21,9 +21,7 @@
           left
         >
           <template v-slot:activator="{ on }">
-            <v-icon class="grey--text" text icon v-on="on">
-              mdi-emoticon-outline
-            </v-icon>
+            <icon :icon="mdiEmoticonOutline" size="24" v-on="on" />
           </template>
           <clientOnly>
             <picker title="Emoji's" emoji="kr" @select="addEmoji" />
@@ -31,15 +29,14 @@
         </v-menu>
       </template>
       <template v-slot:append-outer>
-        <v-icon
-          :loading="buttonLoading"
-          :disabled="sendButtonDisabled"
-          text
+        <btn
           class="primary--text ml-2 pl-0 mr-3"
+          :disabled="sendButtonDisabled"
+          :loading="buttonLoading"
           @click="sendMessage()"
         >
-          mdi-send
-        </v-icon>
+          <icon :icon="mdiSend" size="24" />
+        </btn>
       </template>
     </v-text-field>
   </div>
@@ -47,10 +44,13 @@
 
 <script>
 import { Picker } from 'emoji-mart-vue'
+import { mdiEmoticonOutline, mdiSend } from '@mdi/js'
 
 export default {
   components: {
-    Picker
+    Picker,
+    icon: () => import('../_elements/icon'),
+    btn: () => import('../_elements/btn')
   },
   props: {
     selectedConversation: {
@@ -58,14 +58,14 @@ export default {
       default: null
     }
   },
-  data() {
-    return {
-      newMessage: '',
-      buttonLoading: false,
-      keyboardClosed: true,
-      maxLengthPerMessage: 3000
-    }
-  },
+  data: () => ({
+    mdiSend,
+    mdiEmoticonOutline,
+    newMessage: '',
+    buttonLoading: false,
+    keyboardClosed: true,
+    maxLengthPerMessage: 3000
+  }),
   computed: {
     sendButtonDisabled() {
       return (

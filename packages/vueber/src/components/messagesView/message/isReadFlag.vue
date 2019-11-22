@@ -1,33 +1,34 @@
 <template>
-  <div class="caption mr-1">
+  <div class="isReadFlag">
     <!-- IS READ -->
-    <v-tooltip v-if="isRead" left>
-      <template v-slot:activator="{ on }">
-        <v-icon color="success" small v-on="on">
-          mdi-check
-        </v-icon>
-      </template>
-      <span>Message has been read.</span>
-    </v-tooltip>
+    <icon v-if="isRead" :icon="mdiCheck" color="#4caf50" size="16" />
     <!-- IS NOT READ -->
-    <v-tooltip v-else left>
-      <template v-slot:activator="{ on }">
-        <v-icon color="grey" small v-on="on">
-          mdi-chart-bubble
-        </v-icon>
-      </template>
-      <span>Message has not been read.</span>
-    </v-tooltip>
+    <icon v-else :icon="mdiChartBubble" size="16" />
   </div>
 </template>
 
 <script>
+import { mdiCheck, mdiChartBubble } from '@mdi/js'
+
 export default {
+  components: {
+    icon: () => import('../../_elements/icon')
+  },
   props: {
     isRead: {
       type: Boolean,
       default: false
     }
-  }
+  },
+  data: () => ({
+    mdiCheck,
+    mdiChartBubble
+  })
 }
 </script>
+
+<style scoped>
+.isReadFlag {
+  margin: auto 6px 0px 6px;
+}
+</style>

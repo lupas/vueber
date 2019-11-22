@@ -8,14 +8,13 @@
       @click:append="sendMessage()"
     >
       <template v-slot:append>
-        <!-- <v-menu :close-on-content-click="false" offset-x left>
-          <template v-slot:activator="{ on }">
-            <icon :icon="mdiEmoticonOutline" size="24" v-on="on" />
+        <emojiPicker>
+          <template v-slot:activator="{ showMenu }">
+            <btn @click="showMenu">
+              <icon :icon="mdiEmoticonOutline" size="24" />
+            </btn>
           </template>
-          <clientOnly>
-            <picker title="Emoji's" emoji="kr" @select="addEmoji" />
-          </clientOnly>
-        </v-menu> -->
+        </emojiPicker>
       </template>
       <template v-slot:append-outer>
         <btn
@@ -37,15 +36,14 @@
 </template>
 
 <script>
-// import { Picker } from 'emoji-mart-vue'
 import { mdiEmoticonOutline, mdiSend } from '@mdi/js'
 
 export default {
   components: {
-    //Picker,
     icon: () => import('../_elements/icon'),
     btn: () => import('../_elements/btn'),
-    textField: () => import('../_elements/textField')
+    textField: () => import('../_elements/textField'),
+    emojiPicker: () => import('.//emojiPicker')
   },
   props: {
     selectedConversation: {

@@ -18,6 +18,7 @@
     "@mdi/js": "^4.5.95",
     "anchorme": "^1.1.2",
     "emoji-mart-vue": "^2.6.6",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "v-tooltip": "^2.0.2"
   }
 }

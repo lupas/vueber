@@ -1,5 +1,5 @@
 <template>
-  <div class="mainContainer fullHeight" :class="responsiveClass">
+  <div class="vueber mainContainer fullHeight" :class="responsiveClass">
     <div class="leftSidebar">
       <leftSidebar
         :conversations="conversations"
@@ -171,6 +171,11 @@ export default {
 }
 
 /** CLASSES */
+
+.vueber {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
 
 .mainContainer {
   display: flex;

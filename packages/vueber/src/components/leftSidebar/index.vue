@@ -3,7 +3,7 @@
     <div v-for="conversation in conversations" :key="conversation.id">
       <conversationTile
         :conversation="conversation"
-        :current-conversation="currentConversation"
+        :selected-conversation="selectedConversation"
         @clicked="changeConversation"
       />
     </div>
@@ -26,7 +26,7 @@ export default {
       type: Array,
       default: () => []
     },
-    currentConversation: {
+    selectedConversation: {
       type: Object,
       default: null
     },

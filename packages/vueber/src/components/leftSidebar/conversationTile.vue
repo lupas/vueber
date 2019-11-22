@@ -1,82 +1,90 @@
 <template>
-  <v-list-item
-    :value="currentConversation && conversation.id === currentConversation.id"
+  <div
+    class="listItem"
+    :class="{ active: isActive }"
     @click="handeClick(conversation)"
   >
-    <v-list-item-avatar>
-      <v-img :src="avatarPath" alt="User Avatar" />
-    </v-list-item-avatar>
+    <avatar
+      class="listItemAvatar"
+      size="40px"
+      :src="avatarPath"
+      alt="User Avatar"
+    />
 
-    <v-list-item-content>
-      <v-list-item-title>
+    <div class="listItemContent">
+      <p class="listItemTitle">
         {{ conversation._chatpartner.username }} -
         <small>{{ conversation.lastMessage.sentDate | daymonthyear_1 }}</small>
-      </v-list-item-title>
-      <v-list-item-subtitle>
+      </p>
+      <p class="listItemSubtitle ellipseLongText">
         <span v-if="conversation.lastMessage._ownMessage"> You: </span>
-        {{ conversation.lastMessage.message }}
-      </v-list-item-subtitle>
-    </v-list-item-content>
+        <span>{{ conversation.lastMessage.message }}</span>
+      </p>
+    </div>
 
-    <v-list-item-action>
-      <v-tooltip
+    <div class="listItemReadFlag">
+      <icon
         v-if="
           !conversation.lastMessage.isRead &&
             !conversation.lastMessage._ownMessage
         "
-        right
-      >
-        <template v-slot:activator="{ on }">
-          <v-icon color="red" v-on="on">
-            mdi-new-box
-          </v-icon>
-        </template>
-        <span>New message.</span>
-      </v-tooltip>
-      <v-tooltip
+        color="red"
+        :icon="mdiNewBox"
+        size="16"
+      />
+
+      <icon
         v-if="
           conversation.lastMessage._ownMessage &&
             conversation.lastMessage.isRead
         "
-        right
-      >
-        <template v-slot:activator="{ on }">
-          <v-icon color="success" small v-on="on">
-            mdi-check
-          </v-icon>
-        </template>
-        <span>Message has been read.</span>
-      </v-tooltip>
-      <v-tooltip
+        color="success"
+        :icon="mdiCheck"
+        size="16"
+      />
+
+      <icon
         v-if="
           conversation.lastMessage._ownMessage &&
             !conversation.lastMessage.isRead
         "
-        right
-      >
-        <template v-slot:activator="{ on }">
-          <v-icon color="grey" small v-on="on">
-            mdi-chart-bubble
-          </v-icon>
-        </template>
-        <span>Message has not been read.</span>
-      </v-tooltip>
-    </v-list-item-action>
-  </v-list-item>
+        color="grey"
+        :icon="mdiChartBubble"
+        size="16"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
+import moment from 'moment'
+import { mdiNewBox, mdiCheck, mdiChartBubble } from '@mdi/js'
+
 export default {
+  components: {
+    avatar: () => import('../_elements/avatar'),
+    icon: () => import('../_elements/icon')
+  },
+  filters: {
+    daymonthyear_1(datetime) {
+      return moment(datetime).format('D MMM YYYY')
+    }
+  },
   props: {
     conversation: {
       type: Object,
       required: true
     },
-    currentConversation: {
+    selectedConversation: {
       type: Object,
       default: null
     }
   },
+  data: () => ({
+    mdiNewBox,
+    mdiCheck,
+    mdiChartBubble
+  }),
   computed: {
     avatarPath() {
       const noAvatarImg =
@@ -90,6 +98,12 @@ export default {
       } catch (e) {
         return noAvatarImg
       }
+    },
+    isActive() {
+      return (
+        this.selectedConversation &&
+        this.conversation.id === this.selectedConversation.id
+      )
     }
   },
   methods: {
@@ -100,4 +114,50 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.listItem {
+  height: 61px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.active.listItem {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.listItemAvatar {
+  margin-right: 16px;
+}
+
+.listItemContent {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.listItemTitle {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.listItemSubtitle {
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.54);
+  margin: 0;
+}
+
+.listItemReadFlag {
+  margin-left: auto;
+  min-width: 25px;
+  max-width: 25px;
+  text-align: center;
+}
+
+/* Wraps long words */
+.ellipseLongText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>

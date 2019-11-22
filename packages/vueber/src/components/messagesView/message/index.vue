@@ -27,11 +27,17 @@
 
 <script>
 import anchorme from 'anchorme'
+import moment from 'moment'
 
 export default {
   components: {
     isReadFlag: () => import('./isReadFlag'),
     avatar: () => import('./../../_elements/avatar')
+  },
+  filters: {
+    daymonthyeartime_1(datetime) {
+      return moment(datetime).format('D MMM YYYY, HH:mm')
+    }
   },
   props: {
     message: {

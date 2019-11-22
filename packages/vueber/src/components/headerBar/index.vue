@@ -10,9 +10,9 @@
     </template>
 
     <template v-slot:right-items>
-      <v-btn icon @click="showDetails">
+      <btn @click="showDetails">
         <icon :icon="mdiInformationOutline" size="24" />
-      </v-btn>
+      </btn>
     </template>
   </toolbarWrapper>
 </template>
@@ -24,7 +24,8 @@ export default {
   components: {
     avatar: () => import('../_elements/avatar'),
     toolbarWrapper: () => import('../_elements/toolbarWrapper'),
-    icon: () => import('../_elements/icon')
+    icon: () => import('../_elements/icon'),
+    btn: () => import('../_elements/btn')
   },
   props: {
     chatpartner: {

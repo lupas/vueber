@@ -1,9 +1,9 @@
 <template>
   <div ref="messagesView" class="messagesView">
     <div v-if="hasMoreMessages" class="loadMoreMessagesColumn">
-      <v-btn text class="grey--text" small @click="loadMoreMessages">
+      <btn @click="loadMoreMessages">
         Load older messages
-      </v-btn>
+      </btn>
     </div>
 
     <message
@@ -23,7 +23,8 @@ import anchorme from 'anchorme'
 
 export default {
   components: {
-    message: () => import('./message/index')
+    message: () => import('./message/index'),
+    btn: () => import('../_elements/btn')
   },
   props: {
     messages: {

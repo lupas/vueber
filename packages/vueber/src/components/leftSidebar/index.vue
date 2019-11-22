@@ -9,9 +9,9 @@
     </div>
 
     <div v-if="hasMoreConversations" class="loadMoreListItem">
-      <v-btn text class=" grey--text" small @click="loadNextConversations">
+      <btn @click="loadNextConversations">
         Load more...
-      </v-btn>
+      </btn>
     </div>
   </div>
 </template>
@@ -19,7 +19,8 @@
 <script>
 export default {
   components: {
-    conversationTile: () => import('./conversationTile')
+    conversationTile: () => import('./conversationTile'),
+    btn: () => import('../_elements/btn')
   },
   props: {
     conversations: {

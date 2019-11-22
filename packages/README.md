@@ -4,4 +4,3 @@
 
 1. **docs** - vueber documentation
 2. **vueber** - main source code for vueber
-   s

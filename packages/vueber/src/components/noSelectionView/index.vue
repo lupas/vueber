@@ -1,11 +1,14 @@
 <template>
-  <v-btn text class="title grey--text" @click="handleClick">
+  <btn @clicked="handleClick">
     Select a chatpartner.
-  </v-btn>
+  </btn>
 </template>
 
 <script>
 export default {
+  components: {
+    btn: () => import('../_elements/btn')
+  },
   methods: {
     handleClick() {
       this.$emit('clicked')

@@ -1,15 +1,9 @@
 <template>
   <div class="toolbar" :style="dynStyleToolbar">
     <div class="leftItems">
-      <v-btn
-        class="showConversationsButton"
-        small
-        icon
-        text
-        @click="handleGoBack"
-      >
+      <btn class="backButton" @click="handleGoBack">
         <v-icon>mdi-chevron-left</v-icon>
-      </v-btn>
+      </btn>
       <slot name="left-items" />
     </div>
 
@@ -23,6 +17,9 @@
 
 <script>
 export default {
+  components: {
+    btn: () => import('./btn')
+  },
   props: {
     flat: {
       type: Boolean,
@@ -61,14 +58,15 @@ export default {
   flex-grow: 1 !important;
 }
 
-.showBackButton {
+.backButton {
   display: none;
 }
 
 /* On devices smaller than 930 px width */
 @media only screen and (max-width: 930px) {
-  .showBackButton {
+  .backButton {
     display: initial;
+    margin-right: 10px;
   }
 }
 </style>

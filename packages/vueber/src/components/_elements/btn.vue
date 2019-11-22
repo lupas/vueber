@@ -1,5 +1,5 @@
 <template>
-  <button :disabled="disabled" @click="$emit('clicked')">
+  <button :disabled="disabled" @click="$emit('click')">
     <slot />
   </button>
 </template>
@@ -25,5 +25,11 @@ button {
   font-size: 18px;
   background-color: transparent;
   border-width: 0px;
+  padding: 6px 14px 6px 14px;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
 }
 </style>

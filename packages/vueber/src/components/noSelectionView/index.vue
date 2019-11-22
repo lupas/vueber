@@ -1,5 +1,5 @@
 <template>
-  <btn @clicked="handleClick">
+  <btn @click="handleClick">
     Select a chatpartner.
   </btn>
 </template>

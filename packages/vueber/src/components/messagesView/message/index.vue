@@ -108,5 +108,6 @@ export default {
 
 .messageColumn {
   padding: 20px 0 20px 0;
+  max-width: 70%;
 }
 </style>

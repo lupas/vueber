@@ -3,14 +3,13 @@
     :current-user="currentUser"
     :conversations="conversations.data"
     :messages="messages.data"
-    :selected-conversation="conversations.selected"
     :has-more-conversations="conversations.hasOlder"
     :has-more-messages="messages.hasMore"
     :user-actions="userActions"
-    @conversationSelected="changeConversation"
     @loadMoreConversations="loadNextConversations"
     @loadMoreMessages="loadMoreMessages"
     @messagePosted="postMessage"
+    @conversationChanged="handleConversationChanged"
   />
 </template>
 
@@ -86,21 +85,6 @@ export default {
 
     // Start the conversations listener
     this.startConversationsListener()
-
-    // If initialConversationId is provided, load the conversation.
-    if (this.initialConversationId) {
-      const conversation = this.conversations.data.find(
-        (x) => x.id === this.initialConversationId
-      )
-      if (conversation) {
-        this.changeConversation(conversation)
-      }
-    }
-  },
-  methods: {
-    changeConversation(conversation) {
-      this.SELECT_CONVERSATION(conversation)
-    }
   }
 }
 </script>

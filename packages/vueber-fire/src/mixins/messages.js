@@ -9,8 +9,8 @@ export default {
       listener: null
     }
   }),
-  watch: {
-    selectedConversation() {
+  methods: {
+    changeListener(conversation) {
       this.unsubscribeMessagesListener()
 
       /* Reset everything */
@@ -18,15 +18,13 @@ export default {
       this.messages.queryCursor = null
       this.messages.hasMore = false
 
-      if (this.selectedConversation != null) {
+      if (conversation != null) {
         this.startMessagesListener()
       }
-    }
-  },
-  methods: {
+    },
     getMessagesRef() {
       return this.baseRef
-        .doc(this.selectedConversation.id)
+        .doc(this.conversations.selected.id)
         .collection('messages')
         .orderBy('sentDate', 'desc')
         .limit(this.listenerLimit)
@@ -39,7 +37,7 @@ export default {
     },
     async loadMessages() {
       let ref = this.getMessagesRef({
-        conversationId: this.selectedConversation.id,
+        conversationId: this.conversations.selected.id,
         listenerLimit: this.listenerLimit
       })
       ref = ref.startAfter(this.messages.queryCursor)
@@ -72,7 +70,7 @@ export default {
     },
     startMessagesListener() {
       const ref = this.getMessagesRef({
-        conversationId: this.selectedConversation.id,
+        conversationId: this.conversations.selected.id,
         listenerLimit: this.listenerLimit
       })
 

@@ -8,14 +8,12 @@ export default {
       data: []
     }
   }),
-  computed: {
-    selectedConversation() {
-      // Needed for watcher in messages
-      return this.conversations.selected
-    }
-  },
   /**  ACTIONS */
   methods: {
+    handleConversationChanged(conversation) {
+      this.conversations.selected = conversation
+      this.changeListener(conversation)
+    },
     startConversationsListener() {
       if (this.conversations.listener) {
         // don't start if already started
@@ -190,19 +188,6 @@ export default {
       this.unreadConversations.data = conversations
     },
 
-    // Conversations
-    SELECT_CONVERSATION(conversation) {
-      this.conversations.selected = conversation
-      // Mark conversation as read locally:
-      if (conversation) {
-        const index = this.conversations.data.findIndex(
-          (el) => el.id === conversation.id
-        )
-        if (!this.conversations.data[index].lastMessage._ownMessage) {
-          this.conversations.data[index].lastMessage.isRead = true
-        }
-      }
-    },
     SET_HAS_OLDER_CONVERSATIONS(value) {
       this.conversations.hasOlder = value
     },

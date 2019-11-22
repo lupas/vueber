@@ -5,7 +5,7 @@
         :conversations="conversations"
         :selected-conversation="selectedConversation"
         :has-more-conversations="hasMoreConversations"
-        @coversationChanged="handleChangedConversation"
+        @coversationChanged="changeConversation"
         @loadMoreConversations="loadMoreConversations"
       />
     </div>
@@ -78,10 +78,6 @@ export default {
       type: Array,
       default: () => []
     },
-    selectedConversation: {
-      type: Object,
-      default: null
-    },
     hasMoreConversations: {
       type: Boolean,
       required: true
@@ -101,7 +97,8 @@ export default {
   },
   data: () => ({
     showRightSidebar: false,
-    onlyConversationsShown: false
+    onlyConversationsShown: false,
+    selectedConversation: null
   }),
   computed: {
     responsiveClass() {
@@ -131,15 +128,34 @@ export default {
     }
   },
   mounted() {
+    // If initialConversationId is provided, load the conversation.
+    if (this.initialConversationId) {
+      const conversation = this.conversations.data.find(
+        (x) => x.id === this.initialConversationId
+      )
+      if (conversation) {
+        this.changeConversation(conversation)
+      }
+    }
     // Makes sure that on mobile, the conversation view comes first
     if (!this.selectedConversation) {
       this.onlyConversationsShown = true
     }
   },
   methods: {
-    handleChangedConversation(conversation) {
+    changeConversation(conversation) {
       this.onlyConversationsShown = false
-      this.$emit('conversationSelected', conversation)
+      this.selectedConversation = conversation
+      // Mark conversation as read locally:
+      if (conversation) {
+        const index = this.conversations.findIndex(
+          (el) => el.id === conversation.id
+        )
+        if (!this.conversations[index].lastMessage._ownMessage) {
+          this.conversations[index].lastMessage.isRead = true
+        }
+      }
+      this.$emit('conversationChanged', conversation)
     },
     loadMoreConversations() {
       this.$emit('loadMoreConversations')

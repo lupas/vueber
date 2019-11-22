@@ -1,5 +1,12 @@
 <template>
-  <img class="avatarImg" :src="src" :alt="alt" :height="size" :width="size" />
+  <img
+    class="avatarImg"
+    :src="src"
+    :alt="alt"
+    :height="size"
+    :width="size"
+    :style="dynStyle"
+  />
 </template>
 
 <script>
@@ -16,6 +23,16 @@ export default {
     size: {
       type: String,
       default: '45px'
+    }
+  },
+  computed: {
+    dynStyle() {
+      return {
+        width: this.size,
+        height: this.size,
+        'min-width': this.size,
+        'min-height': this.size
+      }
     }
   }
 }

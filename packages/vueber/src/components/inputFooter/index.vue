@@ -8,7 +8,7 @@
       @click:append="sendMessage()"
     >
       <template v-slot:append>
-        <emojiPicker>
+        <emojiPicker @emojiSelected="addEmoji">
           <template v-slot:activator="{ showMenu }">
             <btn @click="showMenu">
               <icon :icon="mdiEmoticonOutline" size="24" />

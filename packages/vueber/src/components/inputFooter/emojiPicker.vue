@@ -3,7 +3,7 @@
     <v-popover offset="10" placement="top-left" :disabled="!shown">
       <slot name="activator" :showMenu="showMenu" />
       <template slot="popover">
-        <picker title="Emoji's" emoji="blush" @select="addEmoji" />
+        <picker title="Emoji's" emoji="blush" @select="handleEmojiSelected" />
       </template>
     </v-popover>
   </div>
@@ -22,8 +22,8 @@ export default {
     shown: false
   }),
   methods: {
-    addEmoji() {
-      // TODO
+    handleEmojiSelected(emoji) {
+      this.$emit('emojiSelected', emoji)
     },
     showMenu() {
       this.shown = true

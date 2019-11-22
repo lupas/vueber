@@ -3,6 +3,7 @@
     <div class="innerInputContainer">
       <input
         ref="inputField"
+        v-model="message"
         placeholder="Type a message..."
         @input="updateMessage"
         @blur="$emit('blur')"
@@ -26,10 +27,16 @@ export default {
   data: () => ({
     message: null
   }),
+  watch: {
+    value(newVal) {
+      if (this.message !== newVal) {
+        this.message = newVal
+      }
+    }
+  },
   methods: {
     updateMessage() {
       const value = this.$refs.inputField.value
-      this.message = value
       this.$emit('input', value)
     },
     handleKeydown(value) {

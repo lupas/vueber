@@ -5,7 +5,7 @@
     class="w-8 h-8 fill-current inline-block"
     :style="iconStyle"
   >
-    <path :d="icon" :fill="color" />
+    <path :d="icon" :fill="disabled ? 'grey' : color" />
     <slot name="paths" />
     <title>{{ iconTitle }}</title>
   </svg>
@@ -33,14 +33,17 @@ export default {
     color: {
       type: String,
       default: 'grey'
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     iconStyle() {
       return {
         height: `${this.size}px`,
-        width: `${this.size}px`,
-        color: this.color
+        width: `${this.size}px`
       }
     }
   },

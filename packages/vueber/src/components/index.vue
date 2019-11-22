@@ -176,6 +176,7 @@ export default {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
   /** VARIABLES */
+  --primary: #42b983;
   --selectedColor: rgba(0, 0, 0, 0.05);
 }
 
@@ -234,7 +235,7 @@ export default {
 
 .inputFooter {
   padding-top: 8px;
-  padding-bottom: 8px;
+  padding-bottom: 18px;
 }
 
 /* On devices smaller than 930 px width */

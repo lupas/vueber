@@ -1,32 +1,21 @@
 <template>
   <div class="mainContainer">
-    <v-text-field
+    <textField
       v-model="newMessage"
-      outlined
-      hide-details
-      rounded
-      dense
-      background-color="grey lighten-4"
-      placeholder="Type a message..."
       @blur="blurHandler"
       @focus="focusHandler"
       @keydown="inputHandler"
       @click:append="sendMessage()"
     >
       <template v-slot:append>
-        <v-menu
-          v-if="$vuetify.breakpoint.smAndUp"
-          :close-on-content-click="false"
-          offset-x
-          left
-        >
+        <!-- <v-menu :close-on-content-click="false" offset-x left>
           <template v-slot:activator="{ on }">
             <icon :icon="mdiEmoticonOutline" size="24" v-on="on" />
           </template>
           <clientOnly>
             <picker title="Emoji's" emoji="kr" @select="addEmoji" />
           </clientOnly>
-        </v-menu>
+        </v-menu> -->
       </template>
       <template v-slot:append-outer>
         <btn
@@ -35,22 +24,28 @@
           :loading="buttonLoading"
           @click="sendMessage()"
         >
-          <icon :icon="mdiSend" size="24" />
+          <icon
+            :icon="mdiSend"
+            color="#42b983"
+            size="24"
+            :disabled="sendButtonDisabled"
+          />
         </btn>
       </template>
-    </v-text-field>
+    </textField>
   </div>
 </template>
 
 <script>
-import { Picker } from 'emoji-mart-vue'
+// import { Picker } from 'emoji-mart-vue'
 import { mdiEmoticonOutline, mdiSend } from '@mdi/js'
 
 export default {
   components: {
-    Picker,
+    //Picker,
     icon: () => import('../_elements/icon'),
-    btn: () => import('../_elements/btn')
+    btn: () => import('../_elements/btn'),
+    textField: () => import('../_elements/textField')
   },
   props: {
     selectedConversation: {
@@ -84,6 +79,7 @@ export default {
       this.keyboardClosed = true
     },
     focusHandler() {
+      // TODO: To implement properly
       // On mobile devices, keyboard opens -> automatically pushes messages up, do nothing
       this.keyboardClosed = false
     },

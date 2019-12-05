@@ -13,8 +13,9 @@
       <avatar size="40px" :src="avatarPath" alt="Avatar" />
 
       <div
-        class="chatBubble wrapLongWords px-3 py-2 mb-0"
+        class="chatBubble wrapLongWords"
         :class="dynBubbleClass"
+        :style="dynBubbleStyle"
       >
         <!-- eslint-disable vue/no-v-html -->
         <span class="wrapLongWords" v-html="urlifiedMessage" />
@@ -65,11 +66,22 @@ export default {
     isOwnMessage() {
       return this.message.senderId === this.currentUser.id
     },
+    dynBubbleStyle() {
+      if (this.isOwnMessage) {
+        return {
+          background: 'blue',
+          color: 'white'
+        }
+      }
+      return {
+        background: 'lightgrey'
+      }
+    },
     dynBubbleClass() {
       if (this.isOwnMessage) {
-        return 'blue white--text mr-3'
+        return 'mr-3'
       }
-      return 'grey lighten-3 ml-3'
+      return 'ml-3'
     },
     avatarPath() {
       if (this.isOwnMessage) {
@@ -92,10 +104,20 @@ export default {
 </script>
 
 <style scoped>
+.text-center {
+  text-align: center;
+}
+
+.d-flex {
+  display: flex;
+}
+
 .chatBubble {
   white-space: pre-line;
   border-radius: 15px;
   max-width: fit-content;
+  padding: 0 12px 0 12px;
+  margin-bottom: 0;
 }
 
 /* Wraps long words */
@@ -109,5 +131,13 @@ export default {
 .messageColumn {
   padding: 20px 0 20px 0;
   max-width: 70%;
+}
+
+.mr-3 {
+  margin-right: 12px;
+}
+
+.ml-3 {
+  margin-left: 12px;
 }
 </style>

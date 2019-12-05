@@ -35,7 +35,7 @@ export default {
     currentUsersId: 'user1',
     currentConversationId: null,
     loadedConversations: [],
-    hasMoreConversations: false,
+    hasMoreConversations: true,
     hasMoreMessages: false,
     // DATABASE:
     users: getInitialUsers(),

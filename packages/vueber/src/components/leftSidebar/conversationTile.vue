@@ -86,8 +86,7 @@ export default {
   }),
   computed: {
     avatarPath() {
-      const noAvatarImg =
-        'https://firebasestorage.googleapis.com/v0/b/amiji-prd.appspot.com/o/_global%2FnoAvatarImg%2FnoAvatar_xs.png?alt=media&token=defd16ac-1bc7-41b1-8ee2-22fa717eb3bd'
+      const noAvatarImg = require('./../../assets/noAvatar_xs.png')
       try {
         if (this.conversation._chatpartner.avatarPath) {
           return this.conversation._chatpartner.avatarPath

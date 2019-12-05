@@ -69,7 +69,7 @@ export default {
     dynBubbleStyle() {
       if (this.isOwnMessage) {
         return {
-          background: 'blue',
+          background: '#3eaf7c',
           color: 'white'
         }
       }
@@ -108,8 +108,16 @@ export default {
   text-align: center;
 }
 
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
 .d-flex {
   display: flex;
+}
+
+.ml-auto {
+  margin-left: auto;
 }
 
 .chatBubble {

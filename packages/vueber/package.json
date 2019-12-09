@@ -15,7 +15,7 @@
   },
   "peerDependencies": {},
   "devDependencies": {
-    "@mdi/js": "^4.5.95",
+    "@mdi/js": "^4.7.95",
     "anchorme": "^1.1.2",
     "emoji-mart-vue": "^2.6.6",
     "moment": "^2.24.0",

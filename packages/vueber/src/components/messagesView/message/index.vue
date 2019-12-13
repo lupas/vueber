@@ -10,7 +10,7 @@
       class="d-flex messageColumn"
       :class="{ 'flex-row-reverse': isOwnMessage, 'ml-auto': isOwnMessage }"
     >
-      <avatar size="40px" :src="avatarPath" alt="Avatar" />
+      <avatar size="30px" :src="avatarPath" alt="Avatar" />
 
       <div
         class="chatBubble wrapLongWords"

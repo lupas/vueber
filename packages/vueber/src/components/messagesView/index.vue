@@ -1,7 +1,7 @@
 <template>
   <div ref="messagesView" class="messagesView">
     <div v-if="hasMoreMessages" class="loadMoreMessagesColumn">
-      <btn @click="loadMoreMessages">
+      <btn class="marginx-auto" @click="loadMoreMessages">
         Load older messages
       </btn>
     </div>
@@ -124,5 +124,10 @@ export default {
 .loadMoreMessagesColumn {
   text-align: center;
   margin: 0 0 20px 0;
+}
+
+.marginx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

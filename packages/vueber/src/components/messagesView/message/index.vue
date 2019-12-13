@@ -124,7 +124,7 @@ export default {
   white-space: pre-line;
   border-radius: 15px;
   max-width: fit-content;
-  padding: 0 12px 0 12px;
+  padding: 6px 12px 6px 12px;
   margin-bottom: 0;
 }
 

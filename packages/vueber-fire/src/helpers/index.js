@@ -30,6 +30,8 @@ export const serializeConversation = (currentUserId) => {
 export const serializeMessage = (doc) => {
   const message = doc.data()
   message.id = doc.id
-  message.sentDate = message.sentDate.toDate()
+  if (message.sentDate) {
+    message.sentDate = message.sentDate.toDate()
+  }
   return message
 }

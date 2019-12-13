@@ -15,9 +15,7 @@
   },
   "peerDependencies": {
     "firewings": "^0.2.1",
-    "vueber": "0.0.1-alpha.0"
-  },
-  "dependencies": {
+    "vueber": "0.0.1-alpha.0",
     "vuefire": "^2.2.0"
   }
 }

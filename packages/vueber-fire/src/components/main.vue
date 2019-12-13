@@ -1,31 +1,33 @@
 <template>
   <vueber
     :current-user="currentUser"
-    :conversations="conversations.data"
-    :messages="messages.data"
-    :has-more-conversations="conversations.hasOlder"
-    :has-more-messages="messages.hasMore"
+    :conversations="conversations"
+    :messages="messages"
+    :has-more-conversations="hasOlderConversations"
+    :has-more-messages="hasMoreMessages"
     :user-actions="userActions"
     @loadMoreConversations="loadNextConversations"
     @loadMoreMessages="loadMoreMessages"
-    @messagePosted="postMessage"
+    @messagePosted="handleMessagePosted"
     @conversationChanged="handleConversationChanged"
   />
 </template>
 
 <script>
-import messagesMixin from '../mixins/messages.js'
-import conversationsMixin from '../mixins/conversations.js'
+import { serializeConversation, serializeMessage } from './../helpers/index'
 
 export default {
   components: {
     vueber: () => import('vueber')
   },
-  mixins: [messagesMixin, conversationsMixin],
   props: {
-    listenerLimit: {
+    conversationsLimit: {
       type: Number,
-      default: 10
+      default: 5
+    },
+    messagesLimit: {
+      type: Number,
+      default: 15
     },
     currentUser: {
       type: Object,
@@ -56,6 +58,17 @@ export default {
       default: null
     }
   },
+  data: () => ({
+    // Conversations
+    conversations: [],
+    hasOlderConversations: true,
+    selectedConversation: null,
+    currentConversationsLimit: 0,
+    // Messages
+    messages: [],
+    hasMoreMessages: true,
+    currentMessagesLimit: 0
+  }),
   computed: {
     fireStore() {
       if (this.nuxtFire) {
@@ -73,18 +86,131 @@ export default {
       return this.fireStore.collection(this.collection)
     }
   },
-  async mounted() {
-    // If no coversations are loaded, load first batch
-    if (this.conversations.data.length === 0) {
+  watch: {
+    selectedConversation: {
+      immediate: true,
+      handler(conversation) {
+        if (conversation) {
+          this.resetMessageLimit()
+          this.bindMessages()
+        }
+      }
+    },
+    currentConversationsLimit() {
+      this.bindConversations()
+    },
+    currentMessagesLimit() {
+      this.bindMessages()
+    }
+  },
+  beforeMount() {
+    // Set initial limits
+    this.currentConversationsLimit = this.conversationsLimit
+    this.resetMessageLimit()
+    // Load Initial Conversations
+    this.bindConversations()
+  },
+  methods: {
+    /*************************************************************** */
+    /***************************** Bindings ************************ */
+    /*************************************************************** */
+    bindConversations() {
+      this.$bind(
+        'conversations',
+        this.baseRef
+          .where(`participantsArray`, 'array-contains', this.currentUser.id)
+          .orderBy('lastMessage.sentDate', 'desc')
+          .limit(this.currentConversationsLimit),
+        { serialize: serializeConversation(this.currentUser.id), wait: true }
+      )
+    },
+    bindMessages() {
+      if (this.selectedConversation) {
+        this.$bind(
+          'messages',
+          this.baseRef
+            .doc(this.selectedConversation.id)
+            .collection('messages')
+            .orderBy('sentDate', 'desc')
+            .limit(this.currentMessagesLimit),
+          { serialize: serializeMessage, wait: true }
+        )
+      }
+    },
+    /*************************************************************** */
+    /**************************** LOCAL FUNCTIONS ****************** */
+    /*************************************************************** */
+    handleConversationChanged(conversation) {
+      this.selectedConversation = conversation
+    },
+    loadNextConversations() {
+      this.currentConversationsLimit += this.conversationsLimit
+    },
+    async handleMessagePosted(message) {
       try {
-        await this.loadNextConversations()
+        await this.postMessageToConversation({ message })
       } catch (e) {
         console.error(e)
+        alert(e)
+      }
+    },
+    loadMoreMessages() {
+      this.currentMessagesLimit += this.messagesLimit
+    },
+    resetMessageLimit() {
+      this.currentMessagesLimit = this.messagesLimit
+    },
+    /*************************************************************** */
+    /***************************** ACTIONS ************************* */
+    /*************************************************************** */
+
+    async postMessageToConversation({ message }) {
+      const newMessage = {
+        hasPendingNotification: true,
+        senderId: this.currentUser.id,
+        senderName: this.currentUser.username,
+        message,
+        sentDate: this.fireStoreObj.FieldValue.serverTimestamp(),
+        isRead: false
+      }
+
+      const batch = this.fireStore.batch()
+      const conversationRef = this.baseRef.doc(this.selectedConversation.id)
+      const messageRef = conversationRef.collection('messages').doc()
+
+      batch.set(messageRef, newMessage)
+      // batch.update(conversationRef, {
+      //   lastMessage: newMessage
+      // })
+      try {
+        await batch.commit()
+      } catch (e) {
+        return Promise.reject(e)
+      }
+    },
+
+    async markMessagesAsRead({ unreadMessages, conversation }) {
+      const batch = this.fireStore.batch()
+
+      for (const message of unreadMessages) {
+        const messageRef = this.$fireStore.doc(message.path)
+        batch.update(messageRef, {
+          isRead: true
+        })
+      }
+
+      if (unreadMessages.length > 0) {
+        const conversationRef = this.$fireStore.doc(conversation.path)
+        batch.update(conversationRef, {
+          'lastMessage.isRead': true
+        })
+      }
+      try {
+        await batch.commit()
+      } catch (e) {
+        return Promise.reject(e)
       }
     }
-
-    // Start the conversations listener
-    this.startConversationsListener()
   }
 }
 </script>

@@ -1,20 +1,25 @@
 <template>
   <div ref="messagesView" class="messagesView">
-    <div v-if="hasMoreMessages" class="loadMoreMessagesColumn">
-      <btn class="marginx-auto" @click="loadMoreMessages">
-        Load older messages
-      </btn>
-    </div>
+    <div v-if="!loading">
+      <div v-if="hasMoreMessages" class="loadMoreMessagesColumn">
+        <btn class="marginx-auto" @click="loadMoreMessages">
+          Load older messages
+        </btn>
+      </div>
 
-    <message
-      v-for="(item, index) in sortedMessages"
-      :key="item.id"
-      :message="item"
-      :selected-conversation="selectedConversation"
-      :current-user="currentUser"
-      :chatpartner-avatar-path="chatpartnerAvatarPath"
-      :show-date-time="shallShowDateTime(index)"
-    />
+      <message
+        v-for="(item, index) in sortedMessages"
+        :key="item.id"
+        :message="item"
+        :selected-conversation="selectedConversation"
+        :current-user="currentUser"
+        :chatpartner-avatar-path="chatpartnerAvatarPath"
+        :show-date-time="shallShowDateTime(index)"
+      />
+    </div>
+    <div v-else class="loadingView">
+      <div>LOADING</div>
+    </div>
   </div>
 </template>
 
@@ -46,6 +51,10 @@ export default {
     chatpartnerAvatarPath: {
       type: String,
       required: true
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({
@@ -128,5 +137,12 @@ export default {
 .marginx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.loadingView {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 </style>

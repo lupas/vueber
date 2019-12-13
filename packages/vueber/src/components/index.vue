@@ -29,6 +29,7 @@
             :has-more-messages="hasMoreMessages"
             :chatpartner-avatar-path="chatpartnerAvatarPath"
             :current-user="currentUser"
+            :loading="messagesLoading"
             class="messagesView"
             @loadMoreMessages="loadMoreMessages"
           />
@@ -93,6 +94,10 @@ export default {
     userActions: {
       type: Object,
       default: null
+    },
+    messagesLoading: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({

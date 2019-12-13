@@ -3,6 +3,7 @@
     :current-user="currentUser"
     :conversations="conversations"
     :messages="messages"
+    :messages-loading="messagesLoading"
     :has-more-conversations="hasOlderConversations"
     :has-more-messages="hasMoreMessages"
     :user-actions="userActions"
@@ -67,7 +68,8 @@ export default {
     // Messages
     messages: [],
     hasMoreMessages: true,
-    currentMessagesLimit: 0
+    currentMessagesLimit: 0,
+    messagesLoading: false
   }),
   computed: {
     fireStore() {
@@ -101,6 +103,9 @@ export default {
     },
     currentMessagesLimit() {
       this.bindMessages()
+    },
+    messages() {
+      this.messagesLoading = false
     }
   },
   beforeMount() {
@@ -141,6 +146,7 @@ export default {
     /**************************** LOCAL FUNCTIONS ****************** */
     /*************************************************************** */
     handleConversationChanged(conversation) {
+      this.messagesLoading = true
       this.selectedConversation = conversation
     },
     loadNextConversations() {

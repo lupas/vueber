@@ -57,7 +57,7 @@ export default {
       return this.messages.length
     },
     sortedMessages() {
-      const messages = this.messages
+      const messages = [...this.messages]
       messages.sort((a, b) => {
         return a.sentDate - b.sentDate
       })
@@ -81,7 +81,9 @@ export default {
           this.scrollTo('top')
           this.loadMoreClicked = false
         }
-        this.scrollTo('bottom')
+        this.$nextTick(() => {
+          this.scrollTo('bottom')
+        })
       }
     }
   },

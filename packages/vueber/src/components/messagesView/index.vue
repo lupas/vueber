@@ -2,7 +2,7 @@
   <div ref="messagesView" class="messagesView">
     <div v-if="!loading">
       <div v-if="hasMoreMessages" class="loadMoreMessagesColumn">
-        <btn class="marginx-auto" @click="loadMoreMessages">
+        <btn small class="marginx-auto" @click="loadMoreMessages">
           Load older messages
         </btn>
       </div>

@@ -9,7 +9,7 @@
     </div>
 
     <div v-if="hasMoreConversations" class="loadMoreListItem">
-      <btn @click="loadNextConversations">
+      <btn small @click="loadNextConversations">
         Load more...
       </btn>
     </div>

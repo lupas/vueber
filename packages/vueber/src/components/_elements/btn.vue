@@ -19,12 +19,17 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    small: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
     dynStyle() {
       return {
-        '--selectedColor': this.color ? this.color : null
+        '--selectedColor': this.color ? this.color : null,
+        'font-size': this.small ? '15px' : null
       }
     }
   }
@@ -40,6 +45,7 @@ button {
   border-width: 0px;
   padding: 6px 14px 6px 14px;
   border-radius: 15px;
+  font-weight: 500;
 }
 
 button:focus {

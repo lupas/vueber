@@ -74,18 +74,15 @@ export default {
       })
     }
   },
-  watch: {
-    messages: {
-      handler() {
-        if (this.loadMoreClicked) {
-          this.scrollTo('top')
-          this.loadMoreClicked = false
-        }
-        this.$nextTick(() => {
-          this.scrollTo('bottom')
-        })
-      }
+  updated() {
+    if (this.loadMoreClicked) {
+      this.scrollTo('top')
+      this.loadMoreClicked = false
+      return
     }
+    this.$nextTick(() => {
+      this.scrollTo('bottom')
+    })
   },
   methods: {
     loadMoreMessages() {

@@ -1,18 +1,9 @@
 <template>
-  <btn @click="handleClick">
+  <p>
     Select a chatpartner.
-  </btn>
+  </p>
 </template>
 
 <script>
-export default {
-  components: {
-    btn: () => import('../_elements/btn')
-  },
-  methods: {
-    handleClick() {
-      this.$emit('clicked')
-    }
-  }
-}
+export default {}
 </script>

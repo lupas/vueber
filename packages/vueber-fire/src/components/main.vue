@@ -51,8 +51,7 @@ export default {
       default: null
     },
     nuxtFire: {
-      type: Boolean,
-      default: false
+      type: Boolean
     },
     userActions: {
       type: Object,

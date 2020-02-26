@@ -1,0 +1,24 @@
+{
+  "name": "vueber-nuxt-fire-demo",
+  "version": "1.0.0",
+  "description": "My astounding Nuxt.js project",
+  "author": "Pascal Luther",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/firebase": "^4.0.0",
+    "anchorme": "^1.1.2",
+    "core-js": "^2",
+    "emoji-mart-vue": "^2.6.6",
+    "firewings": "^0.2.4",
+    "nuxt": "^2.0.0",
+    "vueber": "^0.0.1-alpha.0",
+    "vueber-fire": "0.0.1-alpha.0"
+  },
+  "devDependencies": {}
+}

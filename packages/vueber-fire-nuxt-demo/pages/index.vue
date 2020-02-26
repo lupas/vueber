@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="fullHeight">
     <input v-model="userNumber" type="number" min="1" max="5" />
     <button @click="loginUser">Login User</button>
     <VueberFire :current-user="currentUser" nuxt-fire @loginClicked="loginUser">

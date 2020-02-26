@@ -19,7 +19,8 @@
     "firewings": "^0.2.4",
     "nuxt": "^2.0.0",
     "vueber": "../vueber",
-    "vueber-fire": "../vueber-fire"
+    "vueber-fire": "../vueber-fire",
+    "vuefire": "^2.2.1"
   },
   "devDependencies": {}
 }

@@ -12,7 +12,10 @@ export default {
   data: () => ({}),
   computed: {
     currentUser() {
-      return null
+      return {
+        id: 'testId',
+        username: 'TestUser'
+      }
     }
   }
 }

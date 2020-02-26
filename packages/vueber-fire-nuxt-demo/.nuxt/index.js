@@ -12,6 +12,7 @@ import { setContext, getLocation, getRouteData, normalizeError } from './utils'
 /* Plugins */
 
 import nuxt_plugin_main_fd5aff36 from 'nuxt_plugin_main_fd5aff36' // Source: ./firebase-module/main.js (mode: 'all')
+import nuxt_plugin_vuefire_e59e0770 from 'nuxt_plugin_vuefire_e59e0770' // Source: ../plugins/vuefire (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -147,6 +148,10 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_main_fd5aff36 === 'function') {
     await nuxt_plugin_main_fd5aff36(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_vuefire_e59e0770 === 'function') {
+    await nuxt_plugin_vuefire_e59e0770(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

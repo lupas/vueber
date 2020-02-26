@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Make sure you are using the newest Version of Vue.js installed and you **don't** have `vueber` installed in your project.
+Make sure you are using the newest Version of Vue.js installed in your project.
 
 If using Nuxt, add vueber to build.transpile in nuxt.config.js:
 
@@ -31,4 +31,19 @@ yarn add @nuxtjs/firebase
 
 // If you run into core-js issues:
 yarn add core-js@2
+```
+
+## Install More
+
+### Install and configure Vuefire
+
+```js
+// For Nuxt
+plugins: ['@/plugins/vuefire'],
+
+// Plugin
+import Vue from 'vue'
+import { firestorePlugin } from 'vuefire'
+
+Vue.use(firestorePlugin)
 ```

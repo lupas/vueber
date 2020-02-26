@@ -1,5 +1,9 @@
 <template>
-  <div>
-    <nuxt />
-  </div>
+  <nuxt />
 </template>
+
+<style>
+body {
+  margin: 0;
+}
+</style>

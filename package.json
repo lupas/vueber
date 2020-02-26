@@ -10,7 +10,7 @@
     "vue, vuejs, chat, vueber, messaging, inbox"
   ],
   "scripts": {
-    "dev": "cd packages/demo/simple-demo && npm run serve",
+    "dev": "cd packages/vueber-demo && yarn serve",
     "docs:dev": "vuepress dev packages/docs",
     "docs:build": "vuepress build packages/docs",
     "npm:publish": "cd packages/vueber && npm publish",

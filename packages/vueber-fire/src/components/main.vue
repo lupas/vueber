@@ -228,38 +228,48 @@ export default {
       }
     },
 
-    async initialize() {
+    async initialize(demoData) {
       try {
-        const conversation = {
-          lastMessage: {
-            hasPendingNotification: true,
-            isRead: false,
-            message: "Hello, I'm User 1",
-            senderId: 'user1',
-            senderName: 'User1',
-            sentDate: new Date(),
-            _ownMessage: false
-          },
-          noOfMessages: 13,
-          participants: {
-            user1: {
-              avatarPath: null,
-              chatDisabled: false,
-              id: 'user1',
-              username: 'User1'
-            }
-          },
-          participantsArray: ['user0', 'user1'],
-          id: 'conversation1',
-          path: 'conversations/conversation1',
-          _chatpartner: {
-            avatarPath: null,
-            chatDisabled: false,
-            id: 'user1',
-            username: 'User1'
-          }
+        // const conversation = {
+        //   lastMessage: {
+        //     hasPendingNotification: true,
+        //     isRead: false,
+        //     message: "Hello, I'm User 1",
+        //     senderId: 'user1',
+        //     senderName: 'User1',
+        //     sentDate: new Date(),
+        //     _ownMessage: false
+        //   },
+        //   noOfMessages: 13,
+        //   participants: {
+        //     user0: {
+        //       avatarPath: null,
+        //       chatDisabled: false,
+        //       id: 'user0',
+        //       username: 'User 0'
+        //     },
+        //     user1: {
+        //       avatarPath: null,
+        //       chatDisabled: false,
+        //       id: 'user1',
+        //       username: 'User 1'
+        //     }
+        //   },
+        //   participantsArray: ['user0', 'user1'],
+        //   id: 'conversation1',
+        //   path: 'conversations/conversation1',
+        //   _chatpartner: {
+        //     avatarPath: null,
+        //     chatDisabled: false,
+        //     id: 'user1',
+        //     username: 'User1'
+        //   }
+        // }
+        const batch = this.fireStore.batch()
+        for (const conversation of demoData.conversations) {
+          batch.set(this.baseRef.doc(), conversation)
         }
-        await this.baseRef.add(conversation)
+        await batch.commit()
       } catch (e) {
         console.error(e)
       }

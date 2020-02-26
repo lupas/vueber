@@ -58,7 +58,7 @@
         <loginView
           v-else
           @loginClicked="$emit('loginClicked')"
-          @initializeClicked="$emit('initializeClicked')"
+          @initializeClicked="$emit('initializeClicked', getDemoData())"
         />
       </div>
     </div>
@@ -73,6 +73,7 @@ import headerBar from './headerBar/index'
 import inputFooter from './inputFooter/index'
 import noSelectionView from './noSelectionView/index'
 import loginView from './loginView/index'
+import getDemoData from './../assets/demoData/getDemoData'
 
 export default {
   components: {
@@ -115,6 +116,7 @@ export default {
     }
   },
   data: () => ({
+    getDemoData,
     showRightSidebar: false,
     onlyConversationsShown: false,
     selectedConversation: null

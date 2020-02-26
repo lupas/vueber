@@ -12,8 +12,8 @@
   "scripts": {
     "demo": "cd packages/vueber-fire-nuxt-demo && npm run dev",
     "demo-basic": "cd packages/vueber-demo && yarn dev",
-    "docs:dev": "vuepress dev packages/docs",
-    "docs:build": "vuepress build packages/docs",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "npm:publish": "cd packages/vueber && npm publish",
     "npm:publishAlpha": "cd packages/vueber && npm publish --tag alpha"
   },

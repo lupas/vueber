@@ -15,10 +15,11 @@
     "anchorme": "^1.1.2",
     "core-js": "^2",
     "emoji-mart-vue": "^2.6.6",
+    "firebase": "^7.9.1",
     "firewings": "^0.2.4",
     "nuxt": "^2.0.0",
-    "vueber": "^0.0.1-alpha.0",
-    "vueber-fire": "0.0.1-alpha.0"
+    "vueber": "../vueber",
+    "vueber-fire": "../vueber-fire"
   },
   "devDependencies": {}
 }

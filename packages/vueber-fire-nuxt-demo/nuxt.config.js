@@ -35,7 +35,25 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: 'AIzaSyBPbKMVLeY1x_1sgikvuP5cyfUd6iFs0l0',
+          authDomain: 'vueber-fire-nuxt-demo.firebaseapp.com',
+          databaseURL: 'https://vueber-fire-nuxt-demo.firebaseio.com',
+          projectId: 'vueber-fire-nuxt-demo',
+          storageBucket: 'vueber-fire-nuxt-demo.appspot.com',
+          messagingSenderId: '499279429791',
+          appId: '1:499279429791:web:e0ef9deb856d8ed2c1a2aa'
+        },
+        services: {
+          firestore: true
+        }
+      }
+    ]
+  ],
   /*
    ** Build configuration
    */

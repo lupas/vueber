@@ -18,4 +18,4 @@ Do not use it in any app, it will change A LOT in the next few days, weeks and m
 
 Currently looks something like this:
 
-![previewImage](https://vueber.netlify.com/img/preview1.png 'Preview Image')
+![previewImage](https://vueber.netlify.com/preview1.png 'Preview Image')

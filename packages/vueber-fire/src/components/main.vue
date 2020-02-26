@@ -8,6 +8,7 @@
     :has-more-messages="hasMoreMessages"
     :user-actions="userActions"
     @loginClicked="$emit('loginClicked')"
+    @initializeClicked="initialize"
     @loadMoreConversations="loadNextConversations"
     @loadMoreMessages="loadMoreMessages"
     @messagePosted="handleMessagePosted"
@@ -208,14 +209,14 @@ export default {
       const batch = this.fireStore.batch()
 
       for (const message of unreadMessages) {
-        const messageRef = this.$fireStore.doc(message.path)
+        const messageRef = this.fireStore.doc(message.path)
         batch.update(messageRef, {
           isRead: true
         })
       }
 
       if (unreadMessages.length > 0) {
-        const conversationRef = this.$fireStore.doc(conversation.path)
+        const conversationRef = this.fireStore.doc(conversation.path)
         batch.update(conversationRef, {
           'lastMessage.isRead': true
         })
@@ -224,6 +225,43 @@ export default {
         await batch.commit()
       } catch (e) {
         return Promise.reject(e)
+      }
+    },
+
+    async initialize() {
+      try {
+        const conversation = {
+          lastMessage: {
+            hasPendingNotification: true,
+            isRead: false,
+            message: "Hello, I'm User 1",
+            senderId: 'user1',
+            senderName: 'User1',
+            sentDate: new Date(),
+            _ownMessage: false
+          },
+          noOfMessages: 13,
+          participants: {
+            user1: {
+              avatarPath: null,
+              chatDisabled: false,
+              id: 'user1',
+              username: 'User1'
+            }
+          },
+          participantsArray: ['user0', 'user1'],
+          id: 'conversation1',
+          path: 'conversations/conversation1',
+          _chatpartner: {
+            avatarPath: null,
+            chatDisabled: false,
+            id: 'user1',
+            username: 'User1'
+          }
+        }
+        await this.baseRef.add(conversation)
+      } catch (e) {
+        console.error(e)
       }
     }
   }

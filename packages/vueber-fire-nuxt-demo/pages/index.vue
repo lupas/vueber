@@ -16,7 +16,7 @@ export default {
   methods: {
     loginUser() {
       this.currentUser = {
-        id: 'testId',
+        id: 'user0',
         username: 'TestUser'
       }
     }

@@ -55,7 +55,11 @@
 
       <div v-else class="noSelectionView">
         <noSelectionView v-if="currentUser" @clicked="toggleConversations" />
-        <loginView v-else @loginClicked="$emit('loginClicked')" />
+        <loginView
+          v-else
+          @loginClicked="$emit('loginClicked')"
+          @initializeClicked="$emit('initializeClicked')"
+        />
       </div>
     </div>
   </div>

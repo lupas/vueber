@@ -1,5 +1,5 @@
 <template>
-  <div class="userActions">
+  <div v-if="userActions" class="userActions">
     <p v-if="userActions.goToProfileLink">
       <router-link :to="`${userActions.goToProfileLink}${chatpartner.id}`">
         Go to User Profile

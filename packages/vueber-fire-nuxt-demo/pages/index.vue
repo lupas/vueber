@@ -12,10 +12,11 @@ export default {
   data: () => ({}),
   computed: {
     currentUser() {
-      return {
-        id: 'testId',
-        username: 'TestUser'
-      }
+      return null
+      // {
+      //   id: 'testId',
+      //   username: 'TestUser'
+      // }
     }
   }
 }

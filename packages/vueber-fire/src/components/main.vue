@@ -32,7 +32,7 @@ export default {
     },
     currentUser: {
       type: Object,
-      required: true
+      default: null
     },
     initialConversationId: {
       type: String,
@@ -63,11 +63,11 @@ export default {
     conversations: [],
     hasOlderConversations: true,
     selectedConversation: null,
-    currentConversationsLimit: 0,
+    currentConversationsLimit: 1,
     // Messages
     messages: [],
     hasMoreMessages: true,
-    currentMessagesLimit: 0,
+    currentMessagesLimit: 1,
     messagesLoading: false
   }),
   computed: {
@@ -88,6 +88,15 @@ export default {
     }
   },
   watch: {
+    currentUser: {
+      immediate: true,
+      handler(user) {
+        if (user) {
+          // Load Initial Conversations
+          this.bindConversations()
+        }
+      }
+    },
     selectedConversation: {
       immediate: true,
       handler(conversation) {
@@ -98,7 +107,9 @@ export default {
       }
     },
     currentConversationsLimit() {
-      this.bindConversations()
+      if (this.currentUser) {
+        this.bindConversations()
+      }
     },
     currentMessagesLimit() {
       this.bindMessages()
@@ -111,8 +122,6 @@ export default {
     // Set initial limits
     this.currentConversationsLimit = this.conversationsLimit
     this.resetMessageLimit()
-    // Load Initial Conversations
-    this.bindConversations()
   },
   methods: {
     /*************************************************************** */

@@ -89,7 +89,7 @@ export default {
     },
     currentUser: {
       type: Object,
-      required: true
+      default: null
     },
     userActions: {
       type: Object,

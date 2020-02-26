@@ -47,3 +47,9 @@ import { firestorePlugin } from 'vuefire'
 
 Vue.use(firestorePlugin)
 ```
+
+### After first run - create indexes
+
+```
+The query requires an index. You can create it here: URL
+```

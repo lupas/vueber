@@ -1,6 +1,6 @@
 <template>
   <div class="vueber mainContainer fullHeight" :class="responsiveClass">
-    <div class="leftSidebar">
+    <div v-if="currentUser" class="leftSidebar">
       <leftSidebar
         :conversations="conversations"
         :selected-conversation="selectedConversation"
@@ -10,7 +10,7 @@
       />
     </div>
 
-    <div class="centralContainer fullHeight">
+    <div class="centralContainer fullHeight" :style="centralContainerStyle">
       <headerBar
         v-if="selectedConversation"
         class="headerBar"
@@ -54,21 +54,31 @@
       </div>
 
       <div v-else class="noSelectionView">
-        <noSelectionView @clicked="toggleConversations" />
+        <noSelectionView v-if="currentUser" @clicked="toggleConversations" />
+        <loginView v-else @loginClicked="$emit('loginClicked')" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import leftSidebar from './leftSidebar/index'
+import rightSidebar from './rightSidebar/index'
+import messagesView from './messagesView/index'
+import headerBar from './headerBar/index'
+import inputFooter from './inputFooter/index'
+import noSelectionView from './noSelectionView/index'
+import loginView from './loginView/index'
+
 export default {
   components: {
-    leftSidebar: () => import('./leftSidebar/index'),
-    rightSidebar: () => import('./rightSidebar/index'),
-    messagesView: () => import('./messagesView/index'),
-    headerBar: () => import('./headerBar/index'),
-    inputFooter: () => import('./inputFooter/index'),
-    noSelectionView: () => import('./noSelectionView/index')
+    leftSidebar,
+    rightSidebar,
+    messagesView,
+    headerBar,
+    inputFooter,
+    noSelectionView,
+    loginView
   },
   props: {
     conversations: {
@@ -129,6 +139,14 @@ export default {
       } catch (e) {
         return noAvatarImg
       }
+    },
+    centralContainerStyle() {
+      if (this.currentUser) {
+        return {
+          width: `calc(100% - 350px)`
+        }
+      }
+      return 'width: 100%'
     }
   },
   mounted() {
@@ -248,7 +266,6 @@ export default {
 }
 
 .centralContainer {
-  width: calc(100% - 350px);
   display: flex;
   flex-direction: column;
 }

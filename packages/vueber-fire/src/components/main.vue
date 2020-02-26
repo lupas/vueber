@@ -7,6 +7,7 @@
     :has-more-conversations="hasOlderConversations"
     :has-more-messages="hasMoreMessages"
     :user-actions="userActions"
+    @loginClicked="$emit('loginClicked')"
     @loadMoreConversations="loadNextConversations"
     @loadMoreMessages="loadMoreMessages"
     @messagePosted="handleMessagePosted"

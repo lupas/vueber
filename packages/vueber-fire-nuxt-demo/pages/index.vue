@@ -1,6 +1,7 @@
 <template>
   <div class="fullHeight">
-    <VueberFire :current-user="currentUser" nuxt-fire> </VueberFire>
+    <VueberFire :current-user="currentUser" nuxt-fire @loginClicked="loginUser">
+    </VueberFire>
   </div>
 </template>
 
@@ -9,14 +10,15 @@ import { VueberFire } from 'vueber-fire'
 
 export default {
   components: { VueberFire },
-  data: () => ({}),
-  computed: {
-    currentUser() {
-      return null
-      // {
-      //   id: 'testId',
-      //   username: 'TestUser'
-      // }
+  data: () => ({
+    currentUser: null
+  }),
+  methods: {
+    loginUser() {
+      this.currentUser = {
+        id: 'testId',
+        username: 'TestUser'
+      }
     }
   }
 }

@@ -85,7 +85,12 @@ export default {
     },
     avatarPath() {
       if (this.isOwnMessage) {
-        return this.currentUser.avatar
+        if (this.currentUser.avatar) {
+          return this.currentUser.avatar
+        } else {
+          const noAvatarImg = require('./../../../assets/noAvatar_xs.png')
+          return noAvatarImg
+        }
       }
       return this.chatpartnerAvatarPath
     },

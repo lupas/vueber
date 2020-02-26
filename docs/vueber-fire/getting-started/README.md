@@ -27,7 +27,6 @@ yarn add emoji-mart-vue
 yarn add firewings
 
 yarn add firebase
-OR
 yarn add @nuxtjs/firebase
 
 // If you run into core-js issues:

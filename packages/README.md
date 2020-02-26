@@ -2,5 +2,6 @@
 
 ## Packages
 
-1. **docs** - vueber documentation
-2. **vueber** - main source code for vueber
+- **vueber** - main source code for vueber
+- **vueber-demo** - demo project source code for vueber
+- **vueber-firemo** - main source code for vueber-fire

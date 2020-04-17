@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "vue": "^2.6.10",
-    "vueber": "file:../vueber"
+    "vueber": "0.0.1-alpha.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.0.0",

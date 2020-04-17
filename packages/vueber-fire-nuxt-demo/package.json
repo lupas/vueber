@@ -11,15 +11,15 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/firebase": "^4.0.0",
-    "anchorme": "^1.1.2",
+    "@nuxtjs/firebase": "^5.0.7",
+    "anchorme": "^2.0.0",
     "core-js": "^2",
     "emoji-mart-vue": "^2.6.6",
     "firebase": "^7.9.1",
-    "firewings": "^0.2.4",
+    "firewings": "^1.0.3",
     "nuxt": "^2.0.0",
-    "vueber": "../vueber",
-    "vueber-fire": "../vueber-fire",
+    "vueber": "0.0.1-alpha.0",
+    "vueber-fire": "0.0.1-alpha.0",
     "vuefire": "^2.2.1"
   },
   "devDependencies": {}

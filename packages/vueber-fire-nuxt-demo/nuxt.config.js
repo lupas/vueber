@@ -11,10 +11,10 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
    ** Customize the progress-bar color
@@ -46,13 +46,13 @@ export default {
           projectId: 'vueber-fire-nuxt-demo',
           storageBucket: 'vueber-fire-nuxt-demo.appspot.com',
           messagingSenderId: '499279429791',
-          appId: '1:499279429791:web:e0ef9deb856d8ed2c1a2aa'
+          appId: '1:499279429791:web:e0ef9deb856d8ed2c1a2aa',
         },
         services: {
-          firestore: true
-        }
-      }
-    ]
+          firestore: true,
+        },
+      },
+    ],
   ],
   /*
    ** Build configuration
@@ -62,6 +62,6 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
-  }
+    extend(config, ctx) {},
+  },
 }

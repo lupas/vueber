@@ -5,13 +5,13 @@
 <script>
 export default {
   components: {
-    toolbarWrapper: () => import('../_elements/toolbarWrapper')
+    toolbarWrapper: () => import('../_elements/toolbarWrapper'),
   },
   methods: {
     backButtonPressed() {
       this.$emit('backButtonPressed')
-    }
-  }
+    },
+  },
 }
 </script>
 

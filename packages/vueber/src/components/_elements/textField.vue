@@ -21,18 +21,18 @@ export default {
   props: {
     value: {
       type: String,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
-    message: null
+    message: null,
   }),
   watch: {
     value(newVal) {
       if (this.message !== newVal) {
         this.message = newVal
       }
-    }
+    },
   },
   methods: {
     updateMessage() {
@@ -41,8 +41,8 @@ export default {
     },
     handleKeydown(value) {
       this.$emit('keydown', value)
-    }
-  }
+    },
+  },
 }
 </script>
 

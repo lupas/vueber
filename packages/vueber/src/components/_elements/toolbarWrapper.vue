@@ -23,29 +23,29 @@ import { mdiChevronLeft } from '@mdi/js'
 export default {
   components: {
     btn: () => import('./btn'),
-    icon: () => import('./icon')
+    icon: () => import('./icon'),
   },
   props: {
     flat: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => ({
-    mdiChevronLeft
+    mdiChevronLeft,
   }),
   computed: {
     dynStyleToolbar() {
       return {
-        'border-bottom': !this.flat ? 'solid #d3d3d380 1px' : null
+        'border-bottom': !this.flat ? 'solid #d3d3d380 1px' : null,
       }
-    }
+    },
   },
   methods: {
     handleGoBack() {
       this.$emit('goBackPressed')
-    }
-  }
+    },
+  },
 }
 </script>
 

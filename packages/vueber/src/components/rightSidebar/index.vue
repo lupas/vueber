@@ -26,27 +26,27 @@ export default {
   components: {
     mobileHeader: () => import('./mobileHeader'),
     avatar: () => import('../_elements/avatar'),
-    userActions: () => import('./userActions')
+    userActions: () => import('./userActions'),
   },
   props: {
     chatpartner: {
       type: Object,
-      required: true
+      required: true,
     },
     chatpartnerAvatarPath: {
       type: String,
-      required: true
+      required: true,
     },
     userActions: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   methods: {
     handleBackButtonPress() {
       this.$emit('backButtonPressed')
-    }
-  }
+    },
+  },
 }
 </script>
 

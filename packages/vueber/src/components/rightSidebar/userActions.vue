@@ -18,13 +18,13 @@ export default {
   props: {
     chatpartner: {
       type: Object,
-      required: true
+      required: true,
     },
     userActions: {
       type: Object,
-      default: null
-    }
-  }
+      default: null,
+    },
+  },
 }
 </script>
 

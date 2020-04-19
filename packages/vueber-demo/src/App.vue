@@ -20,13 +20,13 @@
 import {
   getInitialConversations,
   getInitialUsers,
-  getInitialMessages
+  getInitialMessages,
 } from './initialData'
 
 export default {
   name: 'App',
   components: {
-    vueber: () => import('vueber')
+    vueber: () => import('vueber'),
   },
   data: () => ({
     // SETTINGS
@@ -40,7 +40,7 @@ export default {
     // DATABASE:
     users: getInitialUsers(),
     conversations: getInitialConversations(),
-    messages: getInitialMessages()
+    messages: getInitialMessages(),
   }),
   computed: {
     currentUser() {
@@ -50,7 +50,7 @@ export default {
       return this.messages.filter(
         (x) => x.conversationId === this.currentConversationId
       )
-    }
+    },
   },
   mounted() {
     this.loadedConversations = this.conversations
@@ -74,10 +74,10 @@ export default {
         senderName: this.currentUser.username,
         sentDate: new Date(),
         id: 'sadasds',
-        conversationId: 'conversation1'
+        conversationId: 'conversation1',
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -16,10 +16,10 @@ import { VPopover } from 'v-tooltip'
 export default {
   components: {
     Picker,
-    VPopover
+    VPopover,
   },
   data: () => ({
-    shown: false
+    shown: false,
   }),
   methods: {
     handleEmojiSelected(emoji) {
@@ -27,8 +27,8 @@ export default {
     },
     showMenu() {
       this.shown = true
-    }
-  }
+    },
+  },
 }
 </script>
 

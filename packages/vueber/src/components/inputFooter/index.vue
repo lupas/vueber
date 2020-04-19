@@ -43,13 +43,13 @@ export default {
     icon: () => import('../_elements/icon'),
     btn: () => import('../_elements/btn'),
     textField: () => import('../_elements/textField'),
-    emojiPicker: () => import('.//emojiPicker')
+    emojiPicker: () => import('.//emojiPicker'),
   },
   props: {
     selectedConversation: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     mdiSend,
@@ -57,7 +57,7 @@ export default {
     newMessage: '',
     buttonLoading: false,
     keyboardClosed: true,
-    maxLengthPerMessage: 3000
+    maxLengthPerMessage: 3000,
   }),
   computed: {
     sendButtonDisabled() {
@@ -65,7 +65,7 @@ export default {
         this.newMessage.length > this.maxLengthPerMessage ||
         this.newMessage.length < 1
       )
-    }
+    },
   },
   methods: {
     blurHandler() {
@@ -108,8 +108,8 @@ export default {
     },
     addEmoji(emoji) {
       this.newMessage = this.newMessage.concat(emoji.native)
-    }
-  }
+    },
+  },
 }
 </script>
 

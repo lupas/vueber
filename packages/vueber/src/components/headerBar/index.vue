@@ -25,31 +25,31 @@ export default {
     avatar: () => import('../_elements/avatar'),
     toolbarWrapper: () => import('../_elements/toolbarWrapper'),
     icon: () => import('../_elements/icon'),
-    btn: () => import('../_elements/btn')
+    btn: () => import('../_elements/btn'),
   },
   props: {
     chatpartner: {
       type: Object,
-      required: true
+      required: true,
     },
     selectedConversation: {
       type: Object,
-      required: true
+      required: true,
     },
     chatpartnerAvatarPath: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data: () => ({
-    mdiInformationOutline
+    mdiInformationOutline,
   }),
   computed: {
     additionalInfo() {
       return {
-        conversationId: this.conversation.id
+        conversationId: this.conversation.id,
       }
-    }
+    },
   },
   methods: {
     showConversations() {
@@ -57,8 +57,8 @@ export default {
     },
     showDetails() {
       this.$emit('showDetailsClicked')
-    }
-  }
+    },
+  },
 }
 </script>
 

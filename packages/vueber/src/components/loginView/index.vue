@@ -17,7 +17,7 @@ import btn from './../_elements/btn'
 
 export default {
   components: {
-    btn
-  }
+    btn,
+  },
 }
 </script>

@@ -26,7 +26,7 @@
       <icon
         v-if="
           !conversation.lastMessage.isRead &&
-            !conversation.lastMessage._ownMessage
+          !conversation.lastMessage._ownMessage
         "
         color="red"
         :icon="mdiNewBox"
@@ -36,7 +36,7 @@
       <icon
         v-if="
           conversation.lastMessage._ownMessage &&
-            conversation.lastMessage.isRead
+          conversation.lastMessage.isRead
         "
         color="#4caf50"
         :icon="mdiCheck"
@@ -46,7 +46,7 @@
       <icon
         v-if="
           conversation.lastMessage._ownMessage &&
-            !conversation.lastMessage.isRead
+          !conversation.lastMessage.isRead
         "
         :icon="mdiChartBubble"
         size="16"
@@ -62,27 +62,27 @@ import { mdiNewBox, mdiCheck, mdiChartBubble } from '@mdi/js'
 export default {
   components: {
     avatar: () => import('../_elements/avatar'),
-    icon: () => import('../_elements/icon')
+    icon: () => import('../_elements/icon'),
   },
   filters: {
     daymonthyear_1(datetime) {
       return moment(datetime).format('D MMM YYYY')
-    }
+    },
   },
   props: {
     conversation: {
       type: Object,
-      required: true
+      required: true,
     },
     selectedConversation: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     mdiNewBox,
     mdiCheck,
-    mdiChartBubble
+    mdiChartBubble,
   }),
   computed: {
     avatarPath() {
@@ -102,13 +102,13 @@ export default {
         this.selectedConversation &&
         this.conversation.id === this.selectedConversation.id
       )
-    }
+    },
   },
   methods: {
     handeClick(conversation) {
       this.$emit('clicked', conversation)
-    }
-  }
+    },
+  },
 }
 </script>
 

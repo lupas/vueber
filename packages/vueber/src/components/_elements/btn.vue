@@ -14,25 +14,25 @@ export default {
   props: {
     color: {
       type: String,
-      default: null
+      default: null,
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     small: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     dynStyle() {
       return {
         '--selectedColor': this.color ? this.color : null,
-        'font-size': this.small ? '15px' : null
+        'font-size': this.small ? '15px' : null,
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

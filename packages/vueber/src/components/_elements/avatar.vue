@@ -14,16 +14,16 @@ export default {
   props: {
     src: {
       type: String,
-      required: true
+      required: true,
     },
     alt: {
       type: String,
-      required: true
+      required: true,
     },
     size: {
       type: String,
-      default: '45px'
-    }
+      default: '45px',
+    },
   },
   computed: {
     dynStyle() {
@@ -31,10 +31,10 @@ export default {
         width: this.size,
         height: this.size,
         'min-width': this.size,
-        'min-height': this.size
+        'min-height': this.size,
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

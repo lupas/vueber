@@ -20,21 +20,21 @@
 export default {
   components: {
     conversationTile: () => import('./conversationTile'),
-    btn: () => import('../_elements/btn')
+    btn: () => import('../_elements/btn'),
   },
   props: {
     conversations: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     selectedConversation: {
       type: Object,
-      default: null
+      default: null,
     },
     hasMoreConversations: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   methods: {
     changeConversation(conversation) {
@@ -42,8 +42,8 @@ export default {
     },
     loadNextConversations() {
       this.$emit('loadMoreConversations')
-    }
-  }
+    },
+  },
 }
 </script>
 

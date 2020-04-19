@@ -29,37 +29,37 @@ import anchorme from 'anchorme'
 export default {
   components: {
     message: () => import('./message/index'),
-    btn: () => import('../_elements/btn')
+    btn: () => import('../_elements/btn'),
   },
   props: {
     messages: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     selectedConversation: {
       type: Object,
-      default: null
+      default: null,
     },
     hasMoreMessages: {
       type: Boolean,
-      default: false
+      default: false,
     },
     currentUser: {
       type: Object,
-      required: true
+      required: true,
     },
     chatpartnerAvatarPath: {
       type: String,
-      required: true
+      required: true,
     },
     loading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => ({
     listenerLimit: 10,
-    loadMoreClicked: false
+    loadMoreClicked: false,
   }),
   computed: {
     messagesLength() {
@@ -77,11 +77,11 @@ export default {
         attributes: [
           {
             name: 'target',
-            value: '_blank'
-          }
-        ]
+            value: '_blank',
+          },
+        ],
       })
-    }
+    },
   },
   updated() {
     if (this.loadMoreClicked) {
@@ -120,8 +120,8 @@ export default {
       if (value === 'bottom') {
         container.scrollTop = container.scrollHeight
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

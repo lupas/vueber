@@ -12,18 +12,18 @@ import { mdiCheck, mdiChartBubble } from '@mdi/js'
 
 export default {
   components: {
-    icon: () => import('../../_elements/icon')
+    icon: () => import('../../_elements/icon'),
   },
   props: {
     isRead: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => ({
     mdiCheck,
-    mdiChartBubble
-  })
+    mdiChartBubble,
+  }),
 }
 </script>
 

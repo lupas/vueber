@@ -83,49 +83,49 @@ export default {
     headerBar,
     inputFooter,
     noSelectionView,
-    loginView
+    loginView,
   },
   props: {
     conversations: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     messages: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     hasMoreConversations: {
       type: Boolean,
-      required: true
+      required: true,
     },
     hasMoreMessages: {
       type: Boolean,
-      default: false
+      default: false,
     },
     currentUser: {
       type: Object,
-      default: null
+      default: null,
     },
     userActions: {
       type: Object,
-      default: null
+      default: null,
     },
     messagesLoading: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data: () => ({
     getDemoData,
     showRightSidebar: false,
     onlyConversationsShown: false,
-    selectedConversation: null
+    selectedConversation: null,
   }),
   computed: {
     responsiveClass() {
       return {
         onlyConversationsShown: this.onlyConversationsShown,
-        onlyDetailsShown: this.showRightSidebar
+        onlyDetailsShown: this.showRightSidebar,
       }
     },
     chatpartner() {
@@ -149,11 +149,11 @@ export default {
     centralContainerStyle() {
       if (this.currentUser) {
         return {
-          width: `calc(100% - 350px)`
+          width: `calc(100% - 350px)`,
         }
       }
       return 'width: 100%'
-    }
+    },
   },
   mounted() {
     // If initialConversationId is provided, load the conversation.
@@ -203,8 +203,8 @@ export default {
     },
     toggleDetails() {
       this.showRightSidebar = !this.showRightSidebar
-    }
-  }
+    },
+  },
 }
 </script>
 

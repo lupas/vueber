@@ -16,37 +16,37 @@ export default {
   props: {
     id: {
       type: String,
-      default: null
+      default: null,
     },
     icon: {
       type: String,
-      required: true
+      required: true,
     },
     iconTitle: {
       type: String,
-      default: ''
+      default: '',
     },
     size: {
       type: String,
-      default: '24'
+      default: '24',
     },
     color: {
       type: String,
-      default: 'grey'
+      default: 'grey',
     },
     disabled: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     iconStyle() {
       return {
         height: `${this.size}px`,
-        width: `${this.size}px`
+        width: `${this.size}px`,
       }
-    }
+    },
   },
-  created() {}
+  created() {},
 }
 </script>

@@ -33,34 +33,34 @@ import moment from 'moment'
 export default {
   components: {
     isReadFlag: () => import('./isReadFlag'),
-    avatar: () => import('./../../_elements/avatar')
+    avatar: () => import('./../../_elements/avatar'),
   },
   filters: {
     daymonthyeartime_1(datetime) {
       return moment(datetime).format('D MMM YYYY, HH:mm')
-    }
+    },
   },
   props: {
     message: {
       type: Object,
-      required: true
+      required: true,
     },
     selectedConversation: {
       type: Object,
-      default: null
+      default: null,
     },
     currentUser: {
       type: Object,
-      required: true
+      required: true,
     },
     chatpartnerAvatarPath: {
       type: String,
-      required: true
+      required: true,
     },
     showDateTime: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     isOwnMessage() {
@@ -70,11 +70,11 @@ export default {
       if (this.isOwnMessage) {
         return {
           background: '#3eaf7c',
-          color: 'white'
+          color: 'white',
         }
       }
       return {
-        background: 'lightgrey'
+        background: 'lightgrey',
       }
     },
     dynBubbleClass() {
@@ -99,12 +99,12 @@ export default {
         attributes: [
           {
             name: 'target',
-            value: '_blank'
-          }
-        ]
+            value: '_blank',
+          },
+        ],
       })
-    }
-  }
+    },
+  },
 }
 </script>
 
